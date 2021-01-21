@@ -5,7 +5,7 @@
 + BFE开源项目内部wiki: http://wiki.baidu.com/pages/viewpage.action?pageId=1065820757
 
 ## 背景篇
-+ 第一章 什么是BFE
++ [第一章 什么是BFE?](./background/what-is-bfe.md)
 
 ## 原理篇
 + 第二章 网络接入技术简介
