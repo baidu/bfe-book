@@ -8,9 +8,9 @@
 + [第一章 BFE简介](./background/what-is-bfe.md)
 
 ## 原理篇
-+ 第二章 网络接入技术简介
-+ 第三章 网络接入技术的发展趋势
-+ 第四章 网络接入相关的开源系统
++ [第二章 网络前端接入技术简介](./frontend_principle/introduction/introduction.md)
++ 第三章 网络前端接入技术的发展趋势
++ 第四章 网络前端接入相关的开源项目
 
 ## 设计篇
 + 第五章 BFE为什么要基于Go语言
