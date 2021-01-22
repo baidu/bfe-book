@@ -9,11 +9,11 @@
 
 ## 原理篇
 + [第二章 网络前端接入技术简介](./frontend_principle/introduction/introduction.md)
-+ 第三章 网络前端接入技术的发展趋势
-+ 第四章 网络前端接入相关的开源项目
++ [第三章 网络前端接入技术的发展趋势](./frontend_principle/trend/trend.md)
 
 ## 设计篇
-+ 第五章 BFE为什么要基于Go语言
++ 第四章 BFE为什么要基于Go语言
++ 第五章 BFE和相关开源项目的对比
 + 第六章 BFE的转发模型
 + 第七章 BFE的插件机制
 + 第八章 BFE的路由转发机制
