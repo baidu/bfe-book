@@ -31,4 +31,4 @@
 
 
 ## 附录篇
-+ 附1 BFE的多进程GC机制
++ [附1 BFE的多进程GC机制](./appendix/multi_process_gc/multi_process_gc.md)
