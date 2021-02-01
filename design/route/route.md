@@ -35,6 +35,8 @@
 
 条件表达式是BFE路由转发的核心机制，下面对条件表达式的设计思想和机制进行介绍。
 
+更多关于条件表达式的细节，可以查看BFE开源官网中[关于条件表达式的说明](https://github.com/bfenetworks/bfe/tree/develop/docs/zh_cn/condition)
+
 ### 设计思想
 
 在使用Go语言重构BFE转发引擎之前，BFE使用正则表达式来描述转发的条件。在实践中，发现正则表达式存在以下2个严重问题：
@@ -68,7 +70,7 @@
 req_host_in("bfe-networks.com|bfe-networks.org") 
 ```
 
-+ 条件原语是判断的最小单元。按照请求、响应、会话、系统等几个分类，建立了几十个条件原语。
++ 条件原语是判断的最小单元。按照请求、响应、会话、系统等几个分类，建立了几十个条件原语。也可以根据需求，增加新的条件原语。
 
 #### 条件表达式
 
@@ -102,3 +104,143 @@ $bfe_host && req_method_in("GET")
 + 条件变量和高级条件表达式的引入，是为了便于条件表达式逻辑的复用。
 
 ### 语法
+
+#### 条件原语的语法
+
+条件原语的形式如下：
+
+```go
+func_name(params)
+```
+
+- **func_name**是条件原语名称
+- **params**是条件原语的参数，可能是0个或多个
+- 返回值类型是**bool**
+
+#### 条件表达式的语法
+
+条件表达式(CE: Condition Expression)的语法定义如下：
+
+```
+CE = CE && CE
+   | CE || CE
+   | ( CE )
+   | ! CE
+   | ConditionPrimitive
+```
+
+#### 高级条件表达式的语法
+
+高级条件表达式(ACE: Advanced Condition Expression)的语法定义如下：
+
+```
+ACE = ACE && ACE
+    | ACE || ACE
+    | ( ACE )
+    | ! ACE
+    | ConditionPrimitive
+    | ConditionVariable
+```
+
+#### 操作符优先级
+
+操作符的优先级和结合律与C语言中类似。下表列出了所有操作符的优先级及结合律。操作符从上至下按操作符优先级降序排列。
+
+| 优先级 | 操作符 | 含义   | 结合律   |
+| ------ | ------ | ------ | -------- |
+| 1      | ()     | 括号   | 从左至右 |
+| 2      | !      | 逻辑非 | 从右至左 |
+| 3      | &&     | 逻辑与 | 从左至右 |
+| 4      | \|\|   | 逻辑或 | 从左至右 |
+
+### 条件原语所匹配的内容
+
+条件原语可以对请求、响应、会话及请求上下文中的内容进行匹配。每个条件原语都会对某种内容进行有针对性的精确匹配。这样的方式提升了转发配置的描述准确性，也提升了可读性和可维护性。
+
+条件原语匹配的内容包括：
+
++ **cip**：Client IP，客户端地址
+  + 如：req_cip_range(start_ip, end_ip)
++ **vip**：Virtual IP，服务端虚拟IP地址
+  + 如：req_vip_in(vip_list)
++ **cookie**：HTTP头部所携带的cookie
+  + 对一个cookie，包含key和value两部分
+  + 如：req_cookie_key_in(key_list)，req_cookie_value_in(key, value_list, case_insensitive)
++ **header**：准确的说，应该是HTTP头部字段（HTTP header field）
+  + 对一个HTTP头部字段，包含key和value两部分
+  + 如：req_header_key_in(key_list)，req_header_value_in(header_name, value_list, case_insensitive)
++ **method**：HTTP方法
+  + HTTP方法包括GET、POST、PUT、DELETE等
+  + 如：req_method_in(method_list)
++ **URL**：统一资源定位符
+  + 如：req_url_regmatch(reg_exp)
+
+对于URL，其详细格式为：
+
+```
+scheme:[//authority]path[?query][#fragment]
+```
+
+其中，authority的格式为：
+
+```
+[userinfo@]host[:port]
+```
+
+针对URL，可以进一步匹配其中的内容：
+
++ **host**：主机名
+  + 如：req_host_in(host_list)
++ **port**：端口
+  + 如：req_port_in(port_list)
++ **path**：路径
+  + 如：req_path_in(path_list, case_insensitive)
++ **query**：查询字符串
+  + 对一个查询字符串，包含key和value两部分
+  + 如：req_query_key_in(key_list)，req_query_value_in(key, value_list, case_insensitive)
+
+### 条件原语名称的规范
+
+目前在BFE开源项目中，已经包括40多种条件原语。条件原语的名称会遵循一定的规范，以便于分类和阅读。
+
+BFE开源项目所支持条件原语的列表，可以查看[BFE开源官网](https://github.com/bfenetworks/bfe/blob/develop/docs/zh_cn/condition/condition_primitive_index.md)
+
+#### 条件原语名称前缀
+
+- 针对Request的原语，会以"**req_**"开头
+  - 如：req_host_in()
+
+- 针对Response的原语，会以"**res_**"开头
+  - 如：res_code_in()
+
+- 针对Session的原语，会以"**ses_**"开头
+  - 如：ses_vip_in()
+
+- 针对系统原语，会以"**bfe_**" 开头
+  - 如：bfe_time_range()
+
+#### 条件原语中比较的动作名称
+
+- **match**：精确匹配
+  - 如：req_tag_match()
+- **in**：值是否在某个集合中
+  - 如：req_host_in()
+- **prefix_in**：值的前缀是否在某个集合中
+  - 如：req_path_prefix_in()
+- **suffix_in**：值的后缀是否在某个集合中
+  - 如：req_path_suffix_in()
+- **key_exist**：是否存在指定的key
+  - 如：req_query_key_exist()
+- **value_in**：对给定的key，其value是否落在某个集合中
+  - 如：req_query_key_exist()
+- **value_prefix_in**：对给定的key，其value的前缀是否在某个集合中
+  - 如：req_header_value_prefix_in()
+- **value_suffix_in**：对给定的key，其value的后缀是否在某个集合中
+  - 如：req_header_value_suffix_in()
+- **range**：范围匹配
+  - 如：req_cip_range()
+- **regmatch**：正则匹配
+  - 如：req_url_regmatch()
+  - 注：这类条件原语不合理使用将明显影响性能，谨慎使用
+- **contain**: 字符串包含匹配
+  - 如：req_cookie_value_contain()
