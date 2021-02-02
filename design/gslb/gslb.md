@@ -126,3 +126,24 @@ GTC负责在各网络入口间进行流量调度。GTC包括以下3个主要步�
 + 下发执行：由各BFE集群按照分流权重执行转发
 
 目前在BFE开源项目中，支持内网流量调度权重的手工设置，未包含内网自动流量调度的相关模块。
+
+## 示例场景
+
+- 示例场景如下图所示，包含：
+
+  - 两个IDC：IDC_1和IDC_2
+
+  - 两个BFE集群：BFE_1和BFE_2
+
+  - 后端集群有两个子集群：SubCluster_1和SubCluster_2
+- 可以针对BFE集群，设置子集群的分流比例，如：
+
+  - BFE_1集群的分流配置为：{SubCluster_1: W11，SubCluster_2: W12, Blackhole: W1B}
+
+  - BFE_2集群的分流配置为：{SubCluster_1: W21，SubCluster_2: W22, Blackhole: W2B}
+- BFE实例根据上述配置做WRR调度（加权轮询），向子集群转发请求
+
+  - 例如，当BFE_1的分流配置{W11，W12, W1B}为{45，45，10}时，BFE_1转发给SubCluster_1、SubCluster_1、Blackhole的流量比例依次为：45%、45%、10%。
+- 通过修改上述配置，可以将流量在不同的子集群之间切换，实现负载均衡、快速止损、过载保护等目的。
+
+![gslb example](./gslb_example.png)
