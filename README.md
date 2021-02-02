@@ -15,8 +15,8 @@
 + [第四章 BFE的设计思想](./design/ideas/ideas.md)
 + 第五章 BFE和相关开源项目的对比
 + [第六章 BFE的转发模型](./design/model/model.md)
-+ 第七章 BFE的路由转发机制
-+ 第八章 BFE的内网流量调度机制
++ [第七章 BFE的路由转发机制](./design/route/route.md)
++ [第八章 BFE的内网流量调度机制](./design/gslb/gslb.md)
 + 第九章 BFE的插件机制
 + 第十章 健康检查机制
 + 第十一章 限流机制
