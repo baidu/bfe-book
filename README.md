@@ -17,7 +17,7 @@
 + [第六章 BFE的转发模型](./design/model/model.md)
 + [第七章 BFE的路由转发机制](./design/route/route.md)
 + [第八章 BFE的内网流量调度机制](./design/gslb/gslb.md)
-+ 第九章 BFE的插件机制
++ [第九章 BFE的模块插件机制](./design/module/module.md)
 + 第十章 健康检查机制
 + 第十一章 限流机制
 + 第十二章 监控机制
@@ -27,7 +27,7 @@
 + 第十四章 BFE使用的典型场景
 
 ## 开发篇
-+ 第十五章 如何开发BFE扩展模块
++ [第十五章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
 
 
 ## 附录篇
