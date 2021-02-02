@@ -13,7 +13,7 @@
 
 ## 设计篇
 + [第四章 BFE的设计思想](./design/ideas/ideas.md)
-+ 第五章 BFE和相关开源项目的对比
++ [第五章 BFE和相关开源项目的对比](./design/comparison/comparison.md)
 + [第六章 BFE的转发模型](./design/model/model.md)
 + [第七章 BFE的路由转发机制](./design/route/route.md)
 + [第八章 BFE的内网流量调度机制](./design/gslb/gslb.md)
