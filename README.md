@@ -19,7 +19,7 @@
 + [第八章 BFE的内网流量调度机制](./design/gslb/gslb.md)
 + [第九章 BFE的模块插件机制](./design/module/module.md)
 + [第十章 健康检查机制](./design/health_check/health_check.md)
-+ 第十一章 限流机制
++ [第十一章 限流机制](./design/limit/limit.md)
 + 第十二章 监控机制
 
 ## 操作篇
