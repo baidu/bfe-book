@@ -20,14 +20,17 @@
 + [第九章 BFE的模块插件机制](./design/module/module.md)
 + [第十章 健康检查机制](./design/health_check/health_check.md)
 + [第十一章 限流机制](./design/limit/limit.md)
-+ 第十二章 监控机制
++ [第十二章 监控机制](./design/monitor/monitor.md)
++ 第十四章 日志机制
++ 第十五章 超时设置
++ 第十六章 配置管理
 
 ## 操作篇
-+ 第十三章 BFE使用入门
-+ 第十四章 BFE使用的典型场景
++ 第十六章 BFE使用入门
++ 第十七章 BFE使用的典型场景
 
 ## 开发篇
-+ [第十五章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
++ [第十八章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
 
 
 ## 附录篇
