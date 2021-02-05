@@ -62,7 +62,7 @@ BFE作为一个七层负载均衡软件，需要7*24小时的持续稳定运转�
 
 以上所介绍的BFE相关状态输出机制已经封装为独立的基础库，命名为Web Monitor。下面介绍一下Web Monitor的设计机制和使用方法。
 
-Web Monitor的代码位于https://github.com/baidu/go-lib中的web-monitor目录下。
+Web Monitor的代码位于[https://github.com/baidu/go-lib](https://github.com/baidu/go-lib) 中的web-monitor目录下。
 
 ### 概述
 
@@ -92,7 +92,7 @@ Web Monitor中主要提供以下3类支持：
 + 计量变量（Gauge）：可以增加、减少，也可以直接改变取值
 + 状态变量（State）：可以设置一个字符串作为状态，如“on”、“off”、“red”、“green”
 
-以上几种变量对应的类型定义可以查看https://github.com/baidu/go-lib中[/web-monitor/metrics](https://github.com/baidu/go-lib/tree/master/web-monitor/metrics)目录下的counter.go、gauge.go和state.go。
+以上几种变量对应的类型定义可以查看[https://github.com/baidu/go-lib](https://github.com/baidu/go-lib) 中 [/web-monitor/metrics](https://github.com/baidu/go-lib/tree/master/web-monitor/metrics)目录下的counter.go、gauge.go和state.go。
 
 #### 差值计算
 
