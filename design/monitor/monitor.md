@@ -58,6 +58,15 @@ BFE作为一个七层负载均衡软件，需要7*24小时的持续稳定运转�
 
 ![bfe dashboard](./bfe_dashboard.png)
 
+## 统计状态和日志的配合使用
+
+虽然监控不需要依赖日志，但是日志仍然是有用的。
+
++ 对于一些错误，从状态信息只能看到"错误的发生"，但是无法看到“错误的细节”
++ 在这种场景，在基于状态信息监控到错误的发生后，可以进一步查询对应的日志，以便进一步深入了解错误的情况
+
+关于BFE日志的机制，可以参考“[日志机制](../log/log.md)”。
+
 ## Web Monitor基础库
 
 以上所介绍的BFE相关状态输出机制已经封装为独立的基础库，命名为Web Monitor。下面介绍一下Web Monitor的设计机制和使用方法。
@@ -209,7 +218,7 @@ Delay Counter的用法如下：
 	ProxyDelay.FormatOutput(params)
 ```
 
-## 建立专用的Web Server
+### 建立专用的Web Server
 
 BFE内嵌的监控专用Web Server，在[/bfe_server](https://github.com/bfenetworks/bfe/blob/develop/bfe_server)的web_server.go中定义：
 
@@ -242,7 +251,7 @@ func (m *BfeMonitor) Start() {
 }
 ```
 
-## 注册回调函数
+### 注册回调函数
 在上面一段所调用的m.WebHandlersInit()中，既注册了用于显示内部状态的回调函数，也注册了用于动态加载配置的回调函数：
 ```
 func (m *BfeMonitor) WebHandlersInit(srv *BfeServer) error {
