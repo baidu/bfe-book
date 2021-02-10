@@ -72,6 +72,18 @@ ClientReadTimeout = 60
 }
 ```
 
+  在[/conf/bfe.conf](https://github.com/bfenetworks/bfe/tree/master/conf)中，包含写响应超时的缺省配置。这个配置适用于不知道请求对应的集群、又需要控制与客户端超时的场景。例如：还没有执行到通过路由转发规则确定后端集群、而需要从bfe直接返回自定义响应的时候，使用缺省的超时配置。
+
+```
+[Server]
+...
+# write timeout, in seconds
+ClientWriteTimeout = 60
+...
+```
+
+
+
 + **与用户长连接超时**
 
   在[/conf/server_data_conf/cluster_conf.data](https://github.com/bfenetworks/bfe/blob/master/conf/server_data_conf/cluster_conf.data)中，针对各集群（Cluster）独立配置，单位为毫秒。
