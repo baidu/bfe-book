@@ -24,14 +24,23 @@
 + [第十三章 日志机制](./design/log/log.md)
 + [第十四章 超时设置](./design/timeout/timeout.md)
 + [第十五章 配置管理](./design/configuration/configuration.md)
++ 第十六章 TLS优化机制
 
 ## 操作篇
-+ 第十六章 BFE使用入门
-+ 第十七章 BFE使用的典型场景
++ 第十七章 BFE使用入门
++ 第十八章 BFE使用的典型场景
+
+## 实现篇
++ 第十九章 源代码结构概述
++ 第二十章 进程模型
++ 第二十一章 请求处理与响应
++ 第二十二章 模块框架
++ 第二十三章 请求路由
++ 第二十四章 负载均衡
++ 第二十五章 协议实现
 
 ## 开发篇
-+ [第十八章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
-
++ [第二十六章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
 
 ## 附录篇
 + [附1 BFE的多进程GC机制](./appendix/multi_process_gc/multi_process_gc.md)
