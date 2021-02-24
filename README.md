@@ -27,7 +27,7 @@
 + 第十六章 TLS优化机制
 
 ## 操作篇
-+ [第十七章 BFE服务的安装部署] (./operation/installation.md)
++ [第十七章 BFE服务的安装部署](./operation/installation/installation.md)
 + 第十八章 BFE使用的典型场景
 
 ## 实现篇

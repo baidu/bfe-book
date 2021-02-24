@@ -1,4 +1,4 @@
-# 第十六章 BFE的安装部署
+# BFE的安装部署
 本章将对BFE的安装及运行方式进行具体介绍，帮助读者了解如何运行BFE服务。
 
 ## BFE安装方式
@@ -138,7 +138,7 @@ BFE的镜像可以在docker hub中找到 *https://hub.docker.com/r/bfenetworks/b
 |-l \<log dir>      |日志文件的根目录，默认路径./log    |
 |-s                 |打印log到stdout                |
 |-d                 |打印debug日志                  |
-|-v                 |显示bfe的版本号                 | 
+|-v                 |显示bfe的版本号                 |
 |-V                 |显示bfe的版相关的详细信息        |
 |-h                 |显示帮助                       |
 ---
