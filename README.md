@@ -10,37 +10,38 @@
 ## 原理篇
 + [第二章 网络前端接入技术简介](./frontend_principle/introduction/introduction.md)
 + [第三章 网络前端接入技术的发展趋势](./frontend_principle/trend/trend.md)
++ [第四章 网络负载均衡技术简介](./frontend_principle/load_balance/load_balance.md)
 
 ## 设计篇
-+ [第四章 BFE的设计思想](./design/ideas/ideas.md)
-+ [第五章 BFE和相关开源项目的对比](./design/comparison/comparison.md)
-+ [第六章 BFE的转发模型](./design/model/model.md)
-+ [第七章 BFE的路由转发机制](./design/route/route.md)
-+ [第八章 BFE的内网流量调度机制](./design/gslb/gslb.md)
-+ [第九章 BFE的模块插件机制](./design/module/module.md)
-+ [第十章 健康检查机制](./design/health_check/health_check.md)
-+ [第十一章 限流机制](./design/limit/limit.md)
-+ [第十二章 监控机制](./design/monitor/monitor.md)
-+ [第十三章 日志机制](./design/log/log.md)
-+ [第十四章 超时设置](./design/timeout/timeout.md)
-+ [第十五章 配置管理](./design/configuration/configuration.md)
-+ 第十六章 TLS优化机制
++ [第五章 BFE的设计思想](./design/ideas/ideas.md)
++ [第六章 BFE和相关开源项目的对比](./design/comparison/comparison.md)
++ [第七章 BFE的转发模型](./design/model/model.md)
++ [第八章 BFE的路由转发机制](./design/route/route.md)
++ [第九章 BFE的内网流量调度机制](./design/gslb/gslb.md)
++ [第十章 BFE的模块插件机制](./design/module/module.md)
++ [第十一章 健康检查机制](./design/health_check/health_check.md)
++ [第十二章 限流机制](./design/limit/limit.md)
++ [第十三章 监控机制](./design/monitor/monitor.md)
++ [第十四章 日志机制](./design/log/log.md)
++ [第十五章 超时设置](./design/timeout/timeout.md)
++ [第十六章 配置管理](./design/configuration/configuration.md)
++ 第十七章 TLS优化机制
 
 ## 操作篇
-+ [第十七章 BFE服务的安装部署](./operation/installation/installation.md)
-+ 第十八章 BFE使用的典型场景
++ [第十八章 BFE服务的安装部署](./operation/installation/installation.md)
++ 第十九章 BFE使用的典型场景
 
 ## 实现篇
-+ 第十九章 源代码结构概述
-+ 第二十章 进程模型
-+ 第二十一章 请求处理与响应
-+ 第二十二章 模块框架
-+ 第二十三章 请求路由
-+ 第二十四章 负载均衡
-+ 第二十五章 协议实现
++ 第二十章 源代码结构概述
++ 第二十一章 进程模型
++ 第二十二章 请求处理与响应
++ 第二十三章 模块框架
++ 第二十四章 请求路由
++ 第二十五章 负载均衡
++ 第二十六章 协议实现
 
 ## 开发篇
-+ [第二十六章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
++ [第二十七章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
 
 ## 附录篇
 + [附1 BFE的多进程GC机制](./appendix/multi_process_gc/multi_process_gc.md)
