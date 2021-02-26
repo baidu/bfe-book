@@ -29,19 +29,20 @@
 
 ## 操作篇
 + [第十八章 BFE服务的安装部署](./operation/installation/installation.md)
-+ 第十九章 BFE使用的典型场景
++ [第十九章 BFE基础功能配置](./operation/configuration/config_basic.md)
++ 第二十章 BFE高级功能配置
 
 ## 实现篇
-+ 第二十章 源代码结构概述
-+ 第二十一章 进程模型
-+ 第二十二章 请求处理与响应
-+ 第二十三章 模块框架
-+ 第二十四章 请求路由
-+ 第二十五章 负载均衡
-+ 第二十六章 协议实现
++ 第二十一章 源代码结构概述
++ 第二十二章 进程模型
++ 第二十三章 请求处理与响应
++ 第二十四章 模块框架
++ 第二十五章 请求路由
++ 第二十六章 负载均衡
++ 第二十七章 协议实现
 
 ## 开发篇
-+ [第二十七章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
++ [第二十八章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
 
 ## 附录篇
 + [附1 BFE的多进程GC机制](./appendix/multi_process_gc/multi_process_gc.md)
