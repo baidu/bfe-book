@@ -29,8 +29,8 @@
 
 ## 操作篇
 + [第十八章 BFE服务的安装部署](./operation/installation/installation.md)
-+ [第十九章 BFE基础功能配置](./operation/configuration/config_basic.md)
-+ 第二十章 BFE高级功能配置
++ [第十九章 BFE服务的基础配置](./operation/configuration/config_basic.md)
++ [第二十章 配置负载均衡算法及会话保持](./operation/configuration/config_proxy.md)
 
 ## 实现篇
 + 第二十一章 源代码结构概述
