@@ -26,23 +26,24 @@
 + [第十五章 超时设置](./design/timeout/timeout.md)
 + [第十六章 配置管理](./design/configuration/configuration.md)
 + 第十七章 TLS优化机制
++ [第十八章 信息的透传](./design/info_pass_through/pass_through.md)
 
 ## 操作篇
-+ [第十八章 BFE服务的安装部署](./operation/installation/installation.md)
-+ [第十九章 BFE服务的基础配置](./operation/configuration/config_basic.md)
-+ [第二十章 配置负载均衡算法及会话保持](./operation/configuration/config_proxy.md)
++ [第十九章 BFE服务的安装部署](./operation/installation/installation.md)
++ [第二十章 BFE服务的基础配置](./operation/configuration/config_basic.md)
++ [第二十一章 配置负载均衡算法及会话保持](./operation/configuration/config_proxy.md)
 
 ## 实现篇
-+ 第二十一章 源代码结构概述
-+ 第二十二章 进程模型
-+ 第二十三章 请求处理与响应
-+ 第二十四章 模块框架
-+ 第二十五章 请求路由
-+ 第二十六章 负载均衡
-+ 第二十七章 协议实现
++ 第二十二章 源代码结构概述
++ 第二十三章 进程模型
++ 第二十四章 请求处理与响应
++ 第二十五章 模块框架
++ 第二十六章 请求路由
++ 第二十七章 负载均衡
++ 第二十八章 协议实现
 
 ## 开发篇
-+ [第二十八章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
++ [第二十九章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
 
 ## 附录篇
 + [附1 BFE的多进程GC机制](./appendix/multi_process_gc/multi_process_gc.md)
