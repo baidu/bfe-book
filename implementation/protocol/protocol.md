@@ -58,16 +58,12 @@ BFE在接收到一个HTTP2连接后，除了创建连接处理主协程, 还会�
 
   每个HTTP2连接中各协程基于CSP(Communicating Sequential Processes)并发模型协作，各协程的角色分工及交互关系如下：
 
-
-
 **1.帧处理层的协程**
 
 每个HTTP2连接同时包含2个读写携程负责从连接上接收或发送HTTP2协议帧
 
  * 帧接收协程(Frame Recv Goroutine) 从连接上读取HTTP2协议帧并放入帧接收队列
  * 帧发送协程(Frame Send Goroutine) 从帧发送队列获取帧并写入连接，同时将写结果放入写结果队列WroteChan
-
-
 
 **2.流处理层的协程**
 
@@ -76,8 +72,6 @@ BFE在接收到一个HTTP2连接后，除了创建连接处理主协程, 还会�
  * BodyReadChan：请求处理协程读取请求Body后，通过BodyReadChan向主协程发送读结果消息，主协议接收到消息执行流量控制操作并更新流量控制窗口
  * WriteMsgChan: 请求处理协程发送响应后，通过WriteMsgChan向主协程发送写申请消息，主协议接收到消息后，转换为HTTP2数据帧并放入流发送队列。在合适到时机
  * ReadChan/SendChan/WroteChan：从连接上获取或发送HTTP2协议帧
-
-
 
 **3.接口层的协程**
 

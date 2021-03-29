@@ -19,7 +19,7 @@ LICENSE			bfe_balance		bfe_module		bfe_tls			staticcheck.conf
 
 ![source layout](./source_layout.png)
 
-下面按自顶向下顺序对各目录对应的功能模块介绍说明。
+按自顶向下顺序对各目录对应的功能模块详细说明。
 
 ## 网络协议
 - `bfe_net`: BFE网络相关基础库代码
