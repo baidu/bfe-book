@@ -19,17 +19,19 @@ BFE模块代表一个高内聚、低耦合、实现某种流量处理功能（�
 - Name() 方法返回模块的名称
 - Init() 方法用于执行模块的初始化
 
-```
-type BfeModule interface {
-	// Name returns the name of module.
-	Name() string
+```go
+// bfe_module/bfe_module.go
 
-	// Init initializes the module. The cbs are callback handlers for  
-  // processing connection or request/response. The whs are web monitor 
-  // handlers for exposing internal status or reloading specified 
-  // configuration. The cr is the root path of module configuration 
-  // files.
-	Init(cbs *BfeCallbacks, whs *web_monitor.WebHandlers, cr string) error
+type BfeModule interface {
+    // Name returns the name of module.
+    Name() string
+
+    // Init initializes the module. The cbs are callback handlers for  
+    // processing connection or request/response. The whs are web monitor 
+    // handlers for exposing internal status or reloading specified 
+    // configuration. The cr is the root path of module configuration 
+    // files.
+    Init(cbs *BfeCallbacks, whs *web_monitor.WebHandlers, cr string) error
 }
 ```
 
@@ -40,32 +42,34 @@ type BfeModule interface {
 
 在BFE中按需求场景定义了如下5种回调类型，用于处理连接、请求或响应。
 
-```
+```go
+// bfe_module/bfe_filter.go
+
 // RequestFilter filters incomming requests and return a response or nil.
 // Filters are chained together into a HandlerList.
 type RequestFilter interface {
-	FilterRequest(request *bfe_basic.Request) (int, *bfe_http.Response)
+    FilterRequest(request *bfe_basic.Request) (int, *bfe_http.Response)
 }
 
 // ResponseFilter filters outgoing responses. This can be used to modify 
 // the response before it is sent.
 type ResponseFilter interface {
-	FilterResponse(req *bfe_basic.Request, res *bfe_http.Response) int
+    FilterResponse(req *bfe_basic.Request, res *bfe_http.Response) int
 }
 
 // AcceptFilter filters incoming connections.
 type AcceptFilter interface {
-	FilterAccept(*bfe_basic.Session) int
+    FilterAccept(*bfe_basic.Session) int
 }
 
 // ForwardFilter filters to forward request
 type ForwardFilter interface {
-	FilterForward(*bfe_basic.Request) int
+    FilterForward(*bfe_basic.Request) int
 }
 
 // FinishFilter filters finished session(connection)
 type FinishFilter interface {
-	FilterFinish(*bfe_basic.Session) int
+    FilterFinish(*bfe_basic.Session) int
 }
 ```
 
@@ -81,14 +85,16 @@ type FinishFilter interface {
 
 回调函数具有以下几种返回值，决定了回调函数执行完成时，后续的操作
 
-```
+```go
+// bfe_module/bfe_handler_list.go
+
 // Return value of handler.
 const (
-	BfeHandlerFinish   = 0 // to close the connection after response
-	BfeHandlerGoOn     = 1 // to go on next handler
-	BfeHandlerRedirect = 2 // to redirect
-	BfeHandlerResponse = 3 // to send response
-	BfeHandlerClose    = 4 // to close the connection directly, with no data sent.
+    BfeHandlerFinish   = 0 // to close the connection after response
+    BfeHandlerGoOn     = 1 // to go on next handler
+    BfeHandlerRedirect = 2 // to redirect
+    BfeHandlerResponse = 3 // to send response
+    BfeHandlerClose    = 4 // to close the connection directly, with no data sent.
 )
 ```
 
@@ -109,19 +115,21 @@ const (
 
 回调链(HandlerList)代表了多个回调函数构成的有序列表。一个回调链中的回调函数类型是相同的。
 
-```
+```go
+// bfe_module/bfe_handler_list.go
+
 // HandlerList type.
 const (
-	HandlersAccept   = 0 // for AcceptFilter
-	HandlersRequest  = 1 // for RequestFilter
-	HandlersForward  = 2 // for ForwardFilter
-	HandlersResponse = 3 // for ResponseFilter
-	HandlersFinish   = 4 // for FinishFilter
+    HandlersAccept   = 0 // for AcceptFilter
+    HandlersRequest  = 1 // for RequestFilter
+    HandlersForward  = 2 // for ForwardFilter
+    HandlersResponse = 3 // for ResponseFilter
+    HandlersFinish   = 4 // for FinishFilter
 )
 
 type HandlerList struct {
-	handlerType int //// type of handlers (filters)
-	handlers    *list.List // list of handlers (filters)
+    handlerType int //// type of handlers (filters)
+    handlers    *list.List // list of handlers (filters)
 }
 ```
 
@@ -132,22 +140,24 @@ type HandlerList struct {
 回调框架管理了BFE中所有回调点对应的回调链。
 
 
-```
+```go
+// bfe_module/bfe_callback.go
+
 // Callback point.
 const (
-	HandleAccept         = 0
-	HandleHandshake      = 1
-	HandleBeforeLocation = 2
-	HandleFoundProduct   = 3
-	HandleAfterLocation  = 4
-	HandleForward        = 5
-	HandleReadResponse   = 6
-	HandleRequestFinish  = 7
-	HandleFinish         = 8
+    HandleAccept         = 0
+    HandleHandshake      = 1
+    HandleBeforeLocation = 2
+    HandleFoundProduct   = 3
+    HandleAfterLocation  = 4
+    HandleForward        = 5
+    HandleReadResponse   = 6
+    HandleRequestFinish  = 7
+    HandleFinish         = 8
 )
 
 type BfeCallbacks struct {
-	callbacks map[int]*HandlerList
+    callbacks map[int]*HandlerList
 }
 ```
 
@@ -198,3 +208,47 @@ type BfeCallbacks struct {
 |            | mod_http_code      | 统计HTTP响应状态码                                           |
 
 我们可以通过访问BFE实例的 http://localhost:8299/monitor/module_handlers 监控地址，查看到当前运行的BFE实例中所有的回调点、在各回调点注册的模块回调函数列表以及顺序。
+
+## 连接/请求处理及回调函数的调用
+
+BFE在转发过程对连接/请求对处理及回调点如如模块设计章节图示。在各回调点，BFE将查询指定回调点注册的回调链，并按顺序执行回调链中的各回调函数。
+
+例如，BFE在接收到用户请求头时，将查询在HandleBeforeLocation回调点注册的回调链，执行各回调函数，基于返回值决定后续操作。
+
+```go
+// bfe_server/reverseproxy.go
+
+// Get callbacks for HandleBeforeLocation
+hl = srv.CallBacks.GetHandlerList(bfe_module.HandleBeforeLocation)
+if hl != nil {
+    // process FilterRequest handlers
+    retVal, res = hl.FilterRequest(basicReq)
+    basicReq.HttpResponse = res
+		
+    switch retVal {
+    case bfe_module.BfeHandlerClose:
+        // Close the connection directly (without response)
+        action = closeDirectly
+        return
+			
+    case bfe_module.BfeHandlerFinish:
+        // Close the connection after response
+        action = closeAfterReply
+        basicReq.BfeStatusCode = bfe_http.StatusInternalServerError
+        return
+
+    case bfe_module.BfeHandlerRedirect:
+        // Make an redirect
+        Redirect(rw, req, basicReq.Redirect.Url, basicReq.Redirect.Code, basicReq.Redirect.Header)
+        isRedirect = true
+        basicReq.BfeStatusCode = basicReq.Redirect.Code
+        goto send_response
+
+    case bfe_module.BfeHandlerResponse:
+        // Send generated response
+        goto response_got
+    }
+}
+```
+
+

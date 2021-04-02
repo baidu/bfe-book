@@ -5,8 +5,6 @@ BFE的HTTP/HTTP2/SPDY/WebSocket/TLS等网络协议一般基于golang官方开源
 本章将重点介绍HTTP2协议的实现，其中HTTP2实现相对最复杂，SPDY的实现与HTTP2的实现非常相似，不再赘述。关于其它协议的实现，可参考代码结构说明章节查阅对应源码，也可在BFE开源社区提问交流。
 
 
-
-
 ## HTTP2协议
 
 ### HTTP2代码的组织
@@ -20,9 +18,22 @@ errors_test.go  frame.go       hpack         priority_test.go  state.go        w
 flow.go         frame_test.go  http2.go      server.go         testdata        writesched.go
 ```
 
-按逻辑结构代码组织如下:
+各文件的功能说明如下：
 
-![http2 source layout](http2_source_layout.png)
+| 类别         | 文件名或子目录 | 说明                                    |
+| ------------ | -------------- | --------------------------------------- |
+| 流处理层     | server.go      | 协议连接核心处理逻辑                    |
+|              | flow.go        | 流量控制窗口                            |
+|              | writesched.go  | 协议帧发送优先级队列                    |
+| 帧处理层     | frame.go       | 协议帧定义及解析                        |
+|              | write.go       | 协议帧发送方法                          |
+|              | hpack/         | 协议头部压缩算法HPACK                   |
+| 基础数据类型 | headermap.go   | 常见请求头部定义                        |
+|              | errors.go      | 协议错误定义                            |
+|              | state.go       | 协议内部状态指标                        |
+| 辅助工具     | transport.go   | 封装了HTTP2客户端；仅用于与后端实例通信 |
+
+
 
 
 ### HTTP2连接处理模块

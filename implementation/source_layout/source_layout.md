@@ -1,6 +1,7 @@
 # BFE的代码组织
 
-BFE最新的代码可以从https://github.com/bfenetworks/bfe/releases/页面下载。这里以BFE v1.0.0版本为例介绍BFE。
+BFE最新的代码可以从https://github.com/bfenetworks/bfe/releases/页面下载。本章以BFE v1.0.0版本为例介绍BFE。
+
 在代码目录的顶层可以看到BFE包含如下目录或文件：
 
 ```
@@ -19,7 +20,7 @@ LICENSE			bfe_balance		bfe_module		bfe_tls			staticcheck.conf
 
 ![source layout](./source_layout.png)
 
-按自顶向下顺序对各目录对应的功能模块详细说明。
+按自顶向下顺序各目录对应的功能模块说明如下。
 
 ## 网络协议
 - `bfe_net`: BFE网络相关基础库代码

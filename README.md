@@ -39,9 +39,9 @@
 + [第二十六章 支持更多协议]
 
 ## 实现篇
-+ [第二十七 源代码结构概述](implementation/source_layout/source_layout.md)
++ [第二十七章 源代码结构概述](implementation/source_layout/source_layout.md)
 + [第二十八章 进程模型](implementation/process_model/process_model.md)
-+ [第二十九章 请求处理与响应]
++ [第二十九章 请求处理与响应](implementation/life_of_a_request/life_of_a_request.md)
 + [第三十章 模块框架](implementation/model_framework/model_framework.md)
 + [第三十一章 请求路由](implementation/routing/routing.md)
 + [第三十二章 负载均衡](implementation/balancing/balancing.md)
