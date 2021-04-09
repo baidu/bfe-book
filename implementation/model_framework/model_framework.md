@@ -4,15 +4,15 @@ BFE定义了一套模块机制，通过编写模块插件来快速开发新功�
 
 | 代码目录    | 说明                                                         |
 | ----------- | ------------------------------------------------------------ |
-| bfe_module  | 包含了模块基础类型的定义，例如模块的接口(BfeModule)、模块回调类型(RequestFilter/ResponseFilter/AcceptFilter/FinishFilter)、回调链类型(HandlerList)、回调框架类型（BfeCallbacks） |
-| bfe_moudles | 包含了内置模块的实现，例如流量管理、安全防攻击、流量可见性等不同类别模块。 |
-| bfe_server  | 实现了连接/请求处理的生命周期的管理，并在关键处理阶段设置了回调点。注册在这些回调点的模块的回调函数链将被顺序执行，来支持对连接/请求的定制化处理。 |
+| bfe_module  | 包含了模块基础类型的定义，例如模块的接口、模块回调类型、回调链类型、回调框架类型 |
+| bfe_moudles | 包含了内置模块的实现，例如流量管理、安全防攻击、流量可见性等类别的各种模块 |
+| bfe_server  | 实现了连接/请求处理的生命周期的管理，并在关键处理阶段设置了回调点。注册在这些回调点的模块回调函数链，将被顺序执行，从而支持对连接/请求的定制化处理 |
 
 ## 模块基础类型
 
 ### 模块的定义
 
-BFE模块代表一个高内聚、低耦合、实现某种流量处理功能（例如检测、过滤、改写等）的代码单元。
+BFE模块代表一个高内聚、低耦合、实现特定流量处理功能（例如检测、过滤、改写等）的代码单元。
 
 每个模块需满足如下模块接口(BfeModule)，其中：
 
@@ -80,7 +80,7 @@ type FinishFilter interface {
 | RequestFilter  | 回调函数用于处理到达的请求，并可直接返回响应或继续向下执行 | 检测请求并限流；重定向请求；修改请求内容并继续执行           |
 | ResponseFilter | 回调函数用于处理到达的响应，并可修改响应并继续向下执行     | 修改响应的内容；对响应进行压缩；统计响应状态码；记录请求日志 |
 | AcceptFilter   | 回调函数用于处理到达的连接，并可关闭连接或并继续向下执行   | 检测连接并限流；记录连接的TLS握手信息并继续执行              |
-| ForwardFilter  | 回调函数用于处理待转发的请求，并可修改请求的目的后端实例   | 修改请求的目的实例并继续执行                                 |
+| ForwardFilter  | 回调函数用于处理待转发的请求，并可修改请求的目的后端实例   | 修改请求的目标后端实例并继续执行                             |
 | FinishFilter   | 回调函数用于处理完成的连接                                 | 记录会话日志并继续执行                                       |
 
 回调函数具有以下几种返回值，决定了回调函数执行完成时，后续的操作
@@ -100,13 +100,13 @@ const (
 
 各返回值代表含义如下：
 
-| 回调函数返回值     | 含义说明                             |
-| ------------------ | ------------------------------------ |
-| BfeHandlerFinish   | 直接返回响应，响应发送完成后关闭连接 |
-| BfeHandlerGoOn     | 执行向下执行                         |
-| BfeHandlerRedirect | 直接返回重定向响应                   |
-| BfeHandlerResponse | 直接返回指定响应                     |
-| BfeHandlerClose    | 直接关闭连接                         |
+| 回调函数返回值     | 含义说明                               |
+| ------------------ | -------------------------------------- |
+| BfeHandlerFinish   | 直接返回响应，在响应发送完成后关闭连接 |
+| BfeHandlerGoOn     | 继续向下执行                           |
+| BfeHandlerRedirect | 直接返回重定向响应                     |
+| BfeHandlerResponse | 直接返回指定的响应                     |
+| BfeHandlerClose    | 直接关闭连接                           |
 
 
 
@@ -128,7 +128,7 @@ const (
 )
 
 type HandlerList struct {
-    handlerType int //// type of handlers (filters)
+    handlerType int        // type of handlers (filters)
     handlers    *list.List // list of handlers (filters)
 }
 ```
@@ -163,17 +163,17 @@ type BfeCallbacks struct {
 
 不同回调点可注册的回调函数类型不同，具体情况如下：
 
-| 回调点               | 回调点含义                | 回调函数类型   |
-| -------------------- | ------------------------- | -------------- |
-| HandleAccept         | 与用户端连接建立成功后    | AcceptFilter   |
-| HandleHandshake      | 与用户端连接TLS握手完成后 | AcceptFilter   |
-| HandleBeforeLocation | 请求执行租户路由前        | RequestFilter  |
-| HandleFoundProduct   | 请求执行租户路由后        | RequestFilter  |
-| HandleAfterLocation  | 请求执行集群路由后        | RequestFilter  |
-| HandleForward        | 请求向后端转发前          | ForwardFilter  |
-| HandleReadResponse   | 读取到后端响应头部时      | ResponseFilter |
-| HandleRequestFinish  | 向用户端发送响应完成时    | ResponseFilter |
-| HandleFinish         | 与用户端连接处理完成时    | FinishFilter   |
+| 回调点               | 回调点含义             | 回调函数类型   |
+| -------------------- | ---------------------- | -------------- |
+| HandleAccept         | 与用户端连接建立成功后 | AcceptFilter   |
+| HandleHandshake      | 与用户端TLS握手成功后  | AcceptFilter   |
+| HandleBeforeLocation | 请求执行租户路由前     | RequestFilter  |
+| HandleFoundProduct   | 请求执行租户路由后     | RequestFilter  |
+| HandleAfterLocation  | 请求执行集群路由后     | RequestFilter  |
+| HandleForward        | 请求向后端转发前       | ForwardFilter  |
+| HandleReadResponse   | 读取到后端响应头部时   | ResponseFilter |
+| HandleRequestFinish  | 向用户端发送响应完成时 | ResponseFilter |
+| HandleFinish         | 与用户端连接处理完成时 | FinishFilter   |
 
 ## BFE内置模块
 
@@ -211,9 +211,9 @@ type BfeCallbacks struct {
 
 ## 连接/请求处理及回调函数的调用
 
-BFE在转发过程对连接/请求对处理及回调点如如模块设计章节图示。在各回调点，BFE将查询指定回调点注册的回调链，并按顺序执行回调链中的各回调函数。
+BFE在转发过程对连接/请求对处理及回调点如模块设计章节图示。在各回调点，BFE将查询指定回调点注册的回调链，并按顺序执行回调链中的各回调函数。
 
-例如，BFE在接收到用户请求头时，将查询在HandleBeforeLocation回调点注册的回调链，执行各回调函数，基于返回值决定后续操作。
+例如，BFE在接收到用户请求头时，将查询在HandleBeforeLocation回调点注册的回调链，然后按序执行各回调函数，并基于返回值决定后续操作。
 
 ```go
 // bfe_server/reverseproxy.go
@@ -227,7 +227,7 @@ if hl != nil {
 		
     switch retVal {
     case bfe_module.BfeHandlerClose:
-        // Close the connection directly (without response)
+        // Close the connection directly (without reply)
         action = closeDirectly
         return
 			
@@ -245,7 +245,7 @@ if hl != nil {
         goto send_response
 
     case bfe_module.BfeHandlerResponse:
-        // Send generated response
+        // Send the generated response
         goto response_got
     }
 }

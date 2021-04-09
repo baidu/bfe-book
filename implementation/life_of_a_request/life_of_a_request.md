@@ -4,32 +4,32 @@
 
 ## 连接的建立
 
-BFE的监听器处理协程（bfe_server/http_server.go: BfeServer.Serve函数)循环接受新到连接，并创建新协程处理该连接。
+BFE的监听器处理协程（BfeServer.Serve函数)循环接受新到的客户端连接，并创建新协程处理该连接。
 
 ```go
 // bfe_server/http_server.go
 
 func (srv *BfeServer) Serve(l net.Listener, raw net.Listener, proto string) error {
-	...
-	for {
-		// accept new connection
-		rw, e := l.Accept()
-		...
-		// start go-routine for new connection
-		go func(rwc net.Conn, srv *BfeServer) {
-			c, err := newConn(rw, srv)
-			...
-			c.serve()
-		}(rw, srv)
-	}
+    ...
+	  for {
+			  // accept new connection
+			  rw, e := l.Accept()
+			  ...
+			  // start goroutine for new connection
+			  go func(rwc net.Conn, srv *BfeServer) {
+				    c, err := newConn(rw, srv)
+				    ...
+			  	  c.serve()
+			  }(rw, srv)
+	  }
 }
 ```
 
 ## 连接的处理
 
-BFE的连接对象bfe_server.conn 执行serve函数处理该连接，主要包含：
+BFE的连接bfe_server.conn 执行serve函数处理该连接，主要包含：
 
-- **回调点处理**：执行HandleAccept回调点回调链函数
+- 步骤1. **回调点处理**：执行HandleAccept回调点的回调链函数
 
 ```go
 // bfe_server/http_conn.go
@@ -43,8 +43,9 @@ if hl != nil {
 ```
 
 
-- **握手及协商**：执行TLS握手（如果用户发起TLS连接）
-  - **回调点处理**：执行HandleHandshake回调点回调链函数
+- 步骤2. **握手及协商**：执行TLS握手（如果用户发起TLS连接）
+
+在TLS握手成功后，执行HandleHandshake回调点的回调链函数
 
 ```go
 // bfe_server/http_conn.go
@@ -57,8 +58,7 @@ if hl != nil {
 }
 ```
 
-
-  - 基于协商协议，选择并执行应用层协议Handler（HTTP2/SPDY/STREAM）
+然后基于协商协议，选择并执行应用层协议Handler（HTTP2/SPDY/STREAM）
 
 ```go
 // bfe_server/bfe_server.go
@@ -69,7 +69,7 @@ tlsNextProto[tls_rule_conf.STREAM] = bfe_stream.NewProtoHandler(
 		&bfe_stream.Server{BalanceHandler: srv.Balance})
 ```
 
-- **连接协议处理**：区分连接的协议，执行：
+- 步骤3. **连接协议处理**：区分连接的协议，执行：
   - 如果是HTTP(S)连接，在当前协程中顺序读取请求并处理
   - 如果是HTTP2/SPDY连接，在新建协程中并发读取请求并处理
   - 如果是STREAM连接，在新建协程处理数据的双向转发（下文略去）
@@ -86,7 +86,7 @@ BFE的连接对象bfe_server.conn 执行serveRequest函数处理请求。虽然H
 
 - 步骤1. **回调点处理**
 
-  执行HandleBeforeLoation回调点回调链函数
+  执行HandleBeforeLoation回调点的回调链函数
 
 ```go
 // bfe_server/reverseproxy.go
@@ -113,9 +113,9 @@ if err := srv.findProduct(basicReq); err != nil {
 }
 ```
 
-- 步骤2.**回调点处理**：
+- 步骤3.**回调点处理**：
 
-  执行HandleFoundProduct回调点回调链函数
+  执行HandleFoundProduct回调点的回调链函数
 ```go
 // bfe_server/reverseproxy.go
 
@@ -127,7 +127,7 @@ if hl != nil {
 }
 ```
 
-- **租户路由**：
+- 步骤4.**集群路由**：
 
   查找请求归属的目的集群。详见请求路由章节。
 ```go
@@ -138,7 +138,7 @@ if err = srv.findCluster(basicReq); err != nil {
 }
 ```
 
-- **回调点处理**：执行HandleAfterLocation回调点回调链函数
+- 步骤5.**回调点处理**：执行HandleAfterLocation回调点的回调链函数
 ```go
 // bfe_server/reverseproxy.go
 
@@ -149,11 +149,11 @@ if hl != nil {
 }
 ```
 
-- **请求预处理**：
+- 步骤6.**请求预处理**：
 
-  对请求进行预处理并获取转发参数（例如超时时间）
+  对请求最终转发前，对请求进行预处理并获取转发参数（例如超时时间）
 
-- **负载均衡及转发**：
+- 步骤7.**负载均衡及转发**：
 
   向下游集群转发HTTP请求。详见负载均衡章节
 
@@ -165,7 +165,7 @@ basicReq.HttpResponse = res
 ```
 
 
-- **回调点处理**：执行HandleReadResponse回调点回调链函数
+- 步骤8.**回调点处理**：执行HandleReadResponse回调点的回调链函数
 ```go
 // bfe_server/reverseproxy.go
 
@@ -176,7 +176,7 @@ if hl != nil {
 ```
 
 
-- **响应发送**：向用户端发送响应
+- 步骤9.**响应发送**：向用户端发送响应
 
 ```go
 // bfe_server/reverseproxy.go
@@ -189,7 +189,7 @@ if err != nil {
 
 ## 请求的结束
 
-- 执行HandleRequestFinish回调点回调链函数
+- 执行HandleRequestFinish回调点的回调链函数
 ```go
 // bfe_server/http_conn.go
 
@@ -208,6 +208,6 @@ if hl != nil {
 
 连接在结束前，还需要执行以下操作：
 
-- 执行HandleFinish回调点回调链函数
+- 执行HandleFinish回调点的回调链函数
 - 写出连接缓存区数据并关闭连接
 
