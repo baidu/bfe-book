@@ -12,7 +12,7 @@ hostTable 是一个Trie树类型的数据结构，以便于支持泛域名查找
 
 Trie树节点的数据类型如下：
 
-- Children指该节点的所有子节点
+- Children指向该节点的所有子节点
 - Entry存放该节点到根节点路径所代表的域名(例x.example.com)，对应的租户名称
 - Splat存放该节点到根节点路径所代表的泛域名(例*.x.example.com)，对应的租户名称
 
@@ -22,9 +22,9 @@ Trie树节点的数据类型如下：
 type trieChildren map[string]*Trie
 
 type Trie struct {
-    Children   trieChildren 
-	  Entry      interface{}
-	  Splat      interface{}
+	Children   trieChildren 
+	Entry      interface{}
+	Splat      interface{}
 }
 ```
 
@@ -38,8 +38,24 @@ type Vip2Product map[string]string
 ```
 
 **分流规则表**(productRouteTable): 管理了各租户的分流规则表。
-productRouteTalbe 是一个哈希表类型的数据结构。其中的键代表租户名称, 值代表该租户的分流规则表。
+productRouteTable 是一个哈希表类型的数据结构。其中的键代表租户名称, 值代表该租户的分流规则表。
 各租户的分流规则表包含了一组有序的分流规则。每条规则由规则条件及目的集群组成。
+
+```go
+// bfe_config/bfe_route_conf/route_rule_conf/route_table_load.go
+
+type ProductRouteRule map[string]RouteRules
+
+
+// bfe_route/host_table.go
+
+type HostTable struct {
+	//...
+	
+	productRouteTable route_rule_conf.ProductRouteRule
+}
+
+```
 
 ![product route table](product_route_table.png)
 
@@ -94,7 +110,7 @@ func (t *HostTable) LookupHostTagAndProduct(req *bfe_basic.Request) error {
 
 ## 目的集群路由
 
-HostTable的LookupCluster()实现了目前集群的查找。
+HostTable的LookupCluster()实现了目的集群的查找。
 
 查找的基本流程如下：
 
