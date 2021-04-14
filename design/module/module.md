@@ -11,16 +11,9 @@ BFE模块插件机制的要点如下：
 - 在模块初始化时，把这些回调函数注册到对应的回调点
 - 在处理一个连接或请求时，当执行到某个回调点，会顺序执行所有注册的回调函数
 
-下面将对BFE的回调机制进行详细的说明。在后面“[如何开发BFE扩展模块](../../develop/how_to_write_module/how_to_write_module.md)”一章中，结合一个具体例子对开发BFE扩展模块的方法进行了详细的说明。
+下面将简要介绍BFE中的回调点设置，并列出BFE内置的扩展模块。回调框架的详细设计，请参考实现篇中“[回调框架](../../implementation/model_framework/model_framework.md)”中的说明。在“[如何开发BFE扩展模块](../../develop/how_to_write_module/how_to_write_module.md)”一章中，结合一个具体例子对开发BFE扩展模块的方法进行了详细的说明。
 
-## BFE的回调机制
-
-### BFE的转发过程和回调点
-
-BFE转发过程中的回调点如下图所示。
-![bfe callback](./bfe-callback.png)
-
-### 回调点列表
+## BFE的回调点设置
 
 在BFE中，设置了以下9个回调点：
 
@@ -36,71 +29,41 @@ BFE转发过程中的回调点如下图所示。
 
 回调点的定义，可以查看[/bfe_module/bfe_callback.go](https://github.com/bfenetworks/bfe/tree/master/bfe_module/bfe_callback.go)
 
-### 回调函数的返回值
+BFE转发过程中的回调点如下图所示。
+![bfe callback](./bfe-callback.png)
 
-在回调点执行由模块注册的回调函数，回调函数会返回特定的返回值。BFE根据回调函数的返回值，执行后续的操作。
 
-回调函数的返回值，定义如下：
 
-- BfeHandlerFinish：在发送响应后，关闭连接
-- BfeHandlerGoOn：继续执行下一个回调函数
-- BfeHandlerRedirect：执行重定向（Redirect）
-- BfeHandlerResponse：发送响应
-- BfeHandlerClose：直接关闭连接，不发送任何数据
+## BFE内置模块
 
-回调函数返回值的定义，可以查看[/bfe_module/bfe_handler_list.go](https://github.com/bfenetworks/bfe/tree/master/bfe_module/bfe_handler_list.go)
+在BFE源码的 bfe_modules/<module_name> 目录中内置了大量的扩展模块。简要说明如下：
 
-### 回调函数的形式
+| 模块类别   | 模块名称           | 模块说明                                                     |
+| ---------- | ------------------ | ------------------------------------------------------------ |
+| 流量管理   | mod_rewrite        | 根据自定义条件，修改请求的URI                                |
+|            | mod_header         | 根据自定义条件，修改请求或响应的头部                         |
+|            | mod_redirect       | 根据自定义条件，对请求进行重定向                             |
+|            | mod_geo            | 基于地理信息字典，通过用户IP获取相关的地理信息               |
+|            | mod_tag            | 根据自定义的条件，为请求设置Tag标识                          |
+|            | mod_logid          | 用来生成请求标识及会话标识                                   |
+|            | mod_trust_clientip | 基于配置信任IP列表，检查并标识访问用户真实IP是否属于信任IP   |
+|            | mod_doh            | 支持DNS over HTTPS                                           |
+|            | mod_compress       | 根据自定义条件，支持对响应主体压缩                           |
+|            | mod_errors         | 根据自定义条件，将响应内容替换为/重定向至指定错误页          |
+|            | mod_static         | 根据自定义条件，返回静态文件作为响应                         |
+|            | mod_userid         | 根据自定义的条件，为新用户自动在Cookie中添加用户标识         |
+|            | mod_markdown       | 根据自定义条件，将响应中markdown格式内容转换为html格式       |
+| 安全防攻击 | mod_auth_basic     | 根据自定义的条件，支持HTTP基本认证                           |
+|            | mod_auth_jwt       | 根据自定义的条件，支持JWT (JSON Web Token)认证               |
+|            | mod_auth_request   | 根据自定义的条件，支持将请求转发认证服务进行认证。           |
+|            | mod_block          | 根据自定义的条件，对连接或请求进行封禁                       |
+|            | mod_prison         | 根据自定义的条件，限定单位时间用户的访问频次                 |
+|            | mod_waf            | 根据自定义的条件，对请求执行应用防火墙规则检测或封禁         |
+|            | mod_cors           | 根据自定义的条件，设置跨源资源共享策略                       |
+|            | mod_secure_link    | 根据自定义的条件，对请求签名或有效期进行验证                 |
+| 流量可见性 | mod_access         | 以指定格式记录请求日志和会话日志                             |
+|            | mod_key_log        | 以NSS key log格式记录TLS会话密钥, 便于基于解密分析TLS密文流量诊断分析 |
+|            | mod_trace          | 根据自定义的条件，为请求开启分布式跟踪                       |
+|            | mod_http_code      | 统计HTTP响应状态码                                           |
 
-在不同的回调点，回调函数的形式也是不同的。在BFE中，定义了以下5种类型的回调函数
-
-- HandlersAccept：用于处理连接建立的相关场景
-- HandlersRequest：用于处理和请求有关的场景
-- HandlersForward：用于处理和转发有关的场景
-- HandlersResponse：用于处理和响应有关的场景
-- HandlersFinish：用于处理连接关闭的相关场景
-
-回调函数类型的定义，可以查看[/bfe_module/bfe_handler_list.go](https://github.com/bfenetworks/bfe/tree/master/bfe_module/bfe_handler_list.go)
-
-下面对这几种回调函数做详细的说明。
-
-注：下面回调函数中int类型的返回值，参见上述“回调函数的返回值”中的说明。
-
-#### HandlersAccept
-
-- 适用回调点：
-  + HandleAccept
-  + HandleHandshake
-- 回调函数形式：
-  + handler(session *bfe_basic.Session) int
-
-#### HandlersRequest
-
-- 适用回调点：
-  + HandleBeforeLocation
-  + HandleFoundProduct
-  + HandleAfterLocation
-- 回调函数形式：
-  + handler(req *bfe_basic.Request) (int, *bfe_http.Response) 
-
-#### HandlersForward
-
-- 适用回调点：
-  + HandleForward
-- 回调函数形式：
-  + handler(req *bfe_basic.Request) int 
-
-#### HandlersResponse
-
-- 适用回调点：
-  + HandleReadResponse
-  + HandleRequestFinish
-- 回调函数形式：
-  + handler(req *bfe_basic.Request, res *bfe_http.Response) int 
-
-#### HandlersFinish
-
-- 适用回调点：
-  + HandleFinish
-- 回调函数形式：
-  + handler(session *bfe_basic.Session) int 
+可以通过访问BFE实例的 http://localhost:8299/monitor/module_handlers 监控地址，查看到当前运行的BFE实例中所有的回调点、在各回调点注册的模块回调函数列表以及顺序。
