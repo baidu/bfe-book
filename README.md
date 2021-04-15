@@ -45,7 +45,7 @@
 + [第三十章 模块框架](implementation/model_framework/model_framework.md)
 + [第三十一章 请求路由](implementation/routing/routing.md)
 + [第三十二章 负载均衡](implementation/balancing/balancing.md)
-+ [第三十三章 协议实现](implementation/protocol/protocol.md)
++ [第三十三章 核心协议实现](implementation/protocol/protocol.md)
 
 ## 开发篇
 + [第三十四章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)

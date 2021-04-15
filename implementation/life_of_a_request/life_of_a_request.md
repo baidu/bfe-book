@@ -74,7 +74,7 @@ tlsNextProto[tls_rule_conf.STREAM] = bfe_stream.NewProtoHandler(
   - 如果是HTTP2/SPDY连接，在新建协程中并发读取请求并处理
   - 如果是STREAM连接，在新建协程处理数据的双向转发（下文略去）
   
-  关于协议的实现说明，详见协议实现章节。
+  关于协议的实现说明，详见[核心协议实现](../protocol/protocol.md)一章。
   
   
 
@@ -102,7 +102,7 @@ if hl != nil {
 
 - 步骤2. **租户路由**：
 
-  查找请求归属的租户。详见请求路由章节。
+  查找请求归属的租户。详见[请求路由](../routing/routing.md)中的说明。
 
 ```go
 // bfe_server/reverseproxy.go
@@ -129,7 +129,7 @@ if hl != nil {
 
 - 步骤4.**集群路由**：
 
-  查找请求归属的目的集群。详见请求路由章节。
+  查找请求归属的目的集群。详见[请求路由](../routing/routing.md)中的说明。
 ```go
 // bfe_server/reverseproxy.go
 
@@ -155,7 +155,7 @@ if hl != nil {
 
 - 步骤7.**负载均衡及转发**：
 
-  向下游集群转发HTTP请求。详见负载均衡章节
+  向下游集群转发HTTP请求。详见[负载均衡](../balancing/balancing.md)中的说明
 
 ```go
 // bfe_server/reverseproxy.go
@@ -169,7 +169,8 @@ basicReq.HttpResponse = res
 ```go
 // bfe_server/reverseproxy.go
 
-// Callback for HandleReadResponsehl = srv.CallBacks.GetHandlerList(bfe_module.HandleReadResponse)
+// Callback for HandleReadResponse
+hl = srv.CallBacks.GetHandlerList(bfe_module.HandleReadResponse)
 if hl != nil {
     ...
 }
@@ -191,15 +192,11 @@ if err != nil {
 
 - 执行HandleRequestFinish回调点的回调链函数
 ```go
-// bfe_server/http_conn.go
+// bfe_server/http_conn.go:serveRequest()
 
-// Callback for HandleFinish
-hl := srv.CallBacks.GetHandlerList(bfe_module.HandleFinish)
-if hl != nil {
-    hl.FilterFinish(c.session)
-}
+// callback for finish request
+ret2 := c.server.ReverseProxy.FinishReq(w, request)
 ```
-
 - 检查连接是否需关闭（例如请求被封禁或HTTP KeepAlive未启用）
 - 如需关闭，连接将停止读取后续请求并执行关闭操作
 
@@ -209,5 +206,14 @@ if hl != nil {
 连接在结束前，还需要执行以下操作：
 
 - 执行HandleFinish回调点的回调链函数
+```go
+// bfe_server/http_conn.go
+
+// Callback for HandleFinish
+hl := srv.CallBacks.GetHandlerList(bfe_module.HandleFinish)
+if hl != nil {
+    hl.FilterFinish(c.session)
+}
+```
 - 写出连接缓存区数据并关闭连接
 
