@@ -191,12 +191,17 @@ if err != nil {
 ## 请求的结束
 
 - 执行HandleRequestFinish回调点的回调链函数
-```go
-// bfe_server/http_conn.go:serveRequest()
 
-// callback for finish request
-ret2 := c.server.ReverseProxy.FinishReq(w, request)
+```go
+// bfe_server/reverseproxy.go
+
+// Callback for HandleRequestFinish
+hl := srv.CallBacks.GetHandlerList(bfe_module.HandleRequestFinish)
+if hl != nil {
+    ...
+}
 ```
+
 - 检查连接是否需关闭（例如请求被封禁或HTTP KeepAlive未启用）
 - 如需关闭，连接将停止读取后续请求并执行关闭操作
 
@@ -206,6 +211,7 @@ ret2 := c.server.ReverseProxy.FinishReq(w, request)
 连接在结束前，还需要执行以下操作：
 
 - 执行HandleFinish回调点的回调链函数
+
 ```go
 // bfe_server/http_conn.go
 
@@ -215,5 +221,6 @@ if hl != nil {
     hl.FilterFinish(c.session)
 }
 ```
+
 - 写出连接缓存区数据并关闭连接
 
