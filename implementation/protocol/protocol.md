@@ -1,14 +1,14 @@
 # 核心协议实现
 
-BFE的HTTP/HTTP2/SPDY/WebSocket/TLS等网络协议一般基于golang官方开源协议库二次开发，并进行定制以更好满足反向代理的需求场景，例如性能优化、防攻击机制完善、兼容性改进、增加探针等。
+BFE的HTTP/HTTP2/SPDY/WebSocket/TLS等网络协议基于Go语言官方开源协议库。为更好满足反向代理的需求场景，在BFE中进行了二次定制开发，包括性能优化、防攻击机制完善、兼容性改进、增加探针等。
 
-本章将重点介绍HTTP/HTTP2协议的实现，SPDY的实现与HTTP2的实现非常相似，不再赘述。关于其它协议的实现，可参考代码结构说明章节查阅对应源码，也可在BFE开源社区提问交流。
+本章重点介绍HTTP/HTTP2协议的实现。SPDY的实现与HTTP2的实现非常相似，这里不再赘述。其它协议的实现可参考[BFE的代码组织](../source_layout/source_layout.md)中的说明查阅对应源码，也可在BFE开源社区提问交流。
 
 ## HTTP协议
 
 ### HTTP代码的组织
 
-在bfe_http目录下可以看到包含了如下的代码：
+在bfe_http目录下包含如下代码：
 
 ```bash
 $ ls bfe/bfe_http
@@ -100,9 +100,9 @@ func ReadRequest(b *bfe_bufio.Reader, maxUriBytes int) (req *Request, err error)
 
 ```
 
-注意最后一个步骤中，readTransfer(req, b)并未直接将请求内容立即读取到内存中。因为这会大大增加反向代理的内存开销，同时也会增加请求转发延迟。
+注意在最后一个步骤中，readTransfer(req, b)并未直接将请求内容立即读取到内存中。如果这样做，会大大增加反向代理的内存开销，同时也会增加请求转发延迟。
 
-因此，在readTransfer函数中，根据请求方法、传输编码、请求主体长度，返回了不同的实现了io.ReadCloser接口的类型，用于按需读取请求内容。
+在readTransfer函数中，根据请求方法、传输编码、请求主体长度，返回满足io.ReadCloser接口类型的不同实现，用于按需读取请求内容。
 
 ```go
 // bfe_http/transfer.go
@@ -153,19 +153,19 @@ default:
 // persistConn wraps a connection, usually a persistent one
 // (but may be used for non-keep-alive requests as well)
 type persistConn struct {
-	  t        *Transport
-	  cacheKey string // its connectMethod.String()
-	  conn     net.Conn
+	t        *Transport
+	cacheKey string // its connectMethod.String()
+	conn     net.Conn
     closed   bool                // whether conn has been closed
 
-	  reqch    chan requestAndChan // written by roundTrip; read by readLoop
-	  writech  chan writeRequest   // written by roundTrip; read by writeLoop
-	  closech  chan struct{}       // broadcast close when readLoop (TCP connection) closes
+	reqch    chan requestAndChan // written by roundTrip; read by readLoop
+	writech  chan writeRequest   // written by roundTrip; read by writeLoop
+	closech  chan struct{}       // broadcast close when readLoop (TCP connection) closes
     ...
 }
 ```
 
-同时，persistConn包含两个相关协程 writeLoop()/readLoop()，分别用于向后端连接发送请求及读取响应。
+同时，persistConn包含两个相关协程 writeLoop()和readLoop()，分别用于向后端连接发送请求及读取响应。
 
 ```go
 // bfe_http/transport.go
@@ -231,7 +231,7 @@ func (pc *persistConn) readLoop() {
 
 ### 向用户回复HTTP响应
 
-反向代理通过ResponseWriter接口来构造及发送响应。
+反向代理通过ResponseWriter接口来构造及发送响应，包括以下接口：
 
 - Header():  通过该方法设置响应头部
 - WriteHeader(): 通过该方法设置响应状态码并发送响应头部
@@ -266,7 +266,7 @@ type ResponseWriter interface {
 }
 ```
 
-在bfe_server/response.go文件中 response.go 实现了ResponseWriter接口，并用于发送HTTP/HTTPS响应。
+在bfe_server/response.go文件中实现了ResponseWriter接口，用于发送HTTP/HTTPS响应。
 
 
 
@@ -274,7 +274,7 @@ type ResponseWriter interface {
 
 ### HTTP2代码的组织
 
-在bfe_https目录下可以看到包含了如下代码：
+在bfe_http2目录下包含如下代码：
 
 ```bash
 $ls bfe/bfe_http2
@@ -317,12 +317,12 @@ BFE在接收到一个HTTP2连接后，除了创建连接处理主协程, 还会�
 
 **流处理层**
 
-- 流处理层实现协议核心逻辑，例如：流创建、流数据传输、流关闭; 多路复用、流优先级、流量控制等
+- 流处理层实现协议核心逻辑，例如：流创建、流数据传输、流关闭、多路复用、流优先级、流量控制等
 - 流处理层为每流创建Request/ResponseWriter实例，并在独立协程中运行应用逻辑
 
 **接口层**
 
-- 为HTTP应用Handler提供标准Request/ResponseWriter4实现, 屏蔽HTTP2协议数据传输细节
+- 为HTTP应用Handler提供标准Request/ResponseWriter实现, 屏蔽HTTP2协议数据传输细节
 - HTTP应用Handler运行在Stream Goroutine协程中
 - HTTP应用Handler通过Request实例获取HTTP 请求（读取自特定HTTP2流）
 - HTTP应用Handler通过ResponseWriter实例发送HTTP响应（发往特定HTTP2流）
