@@ -110,16 +110,16 @@ Web Monitor中主要提供以下3类支持：
 (1) 定义包含统计变量的数据类型
 
 ```
-	import "github.com/baidu/go-lib/web-monitor/metrics"
-	
-	// define counter struct type
-	type ServerState {
-		ReqServed *metrics.Counter
-		ConServed *metrics.Counter
-		ConActive *metrics.Gauge
-	}
-	
-	var s ServerState
+import "github.com/baidu/go-lib/web-monitor/metrics"
+
+// define counter struct type
+type ServerState {
+	ReqServed *metrics.Counter
+	ConServed *metrics.Counter
+	ConActive *metrics.Gauge
+}
+
+var s ServerState
 ```
 
 (2) 定义和初始化Metrics变量
@@ -140,18 +140,18 @@ PROXY_CON_ACTIVE: 0
   这个例子中设为20秒
 
 ```
-	// create metrics
-	var m metrics.Metrics
-    m.Init(&s, "PROXY", 20)
+// create metrics
+var m metrics.Metrics
+m.Init(&s, "PROXY", 20)
 ```
 
 (3) 统计变量的相关操作。如：
 ```
-	// counter operations
-	s.ConActive.Inc(2)
-    s.ConServed.Inc(1)
-    s.ReqServed.Inc(1)
-	s.ConActive.Dec(1)
+// counter operations
+s.ConActive.Inc(2)
+s.ConServed.Inc(1)
+s.ReqServed.Inc(1)
+s.ConActive.Dec(1)
 ```
 
 (4) 获得结果
@@ -159,10 +159,10 @@ PROXY_CON_ACTIVE: 0
 通过调用Metrics的GetAll()接口，可以获得其中所有变量的“绝对值”；调用GetDiff()接口，可以获得其中Counter类型在20秒内的“变化值”。
 
 ```
-	// get absoulute data for all metrics
-	stateData := m.GetAll()
-	// get diff data for all counters
-	stateDiff := m.GetDiff()
+// get absoulute data for all metrics
+stateData := m.GetAll()
+// get diff data for all counters
+stateDiff := m.GetDiff()
 ```
 
 #### 使用案例
@@ -200,22 +200,22 @@ Delay Counter的用法如下：
 (1) 定义和初始化Delay Counter
 
 ```
-	import "github.com/baidu/go-lib/web-monitor/delay_counter"
+import "github.com/baidu/go-lib/web-monitor/delay_counter"
 
-	ProxyDelay = new(delay_counter.DelayRecent)
+ProxyDelay = new(delay_counter.DelayRecent)
 	
-	// Init的3个参数为： 统计周期，延迟分档（毫秒），分档个数
-	ProxyDelay.Init(60, 1, 10)
+// Init的3个参数为： 统计周期，延迟分档（毫秒），分档个数
+ProxyDelay.Init(60, 1, 10)
 ```
 
 (2)  增加样本值
 ```
-	ProxyDelay.AddBySub(startTime, endTime)
+ProxyDelay.AddBySub(startTime, endTime)
 ```
 (3) 输出文本形式的结果
 ```
-	// params是由Web Monitor的Web Server传入的参数
-	ProxyDelay.FormatOutput(params)
+// params是由Web Monitor的Web Server传入的参数
+ProxyDelay.FormatOutput(params)
 ```
 
 ### 建立专用的Web Server
