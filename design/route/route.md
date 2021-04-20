@@ -61,7 +61,7 @@
 
 ### 基本概念
 
-#### 条件原语
+#### 条件原语（Condition Primitive）
 
 - 条件原语是基本的内置条件判断单元，执行某种比较来判断是否满足条件
 
@@ -72,7 +72,7 @@ req_host_in("bfe-networks.com|bfe-networks.org")
 
 + 条件原语是判断的最小单元。按照请求、响应、会话、系统等几个分类，建立了几十个条件原语。也可以根据需求，增加新的条件原语。
 
-#### 条件表达式
+#### 条件表达式（Condition Expression）
 
 - 条件表达式是多个条件原语与操作符(例如与、或、非)的组合
 
@@ -81,7 +81,7 @@ req_host_in("bfe-networks.com|bfe-networks.org")
 req_host_in("bfe-networks.com") && req_method_in("GET") 
 ```
 
-#### 条件变量
+#### 条件变量（Condition Variable）
 
 - 可以将条件表达式赋值给一个变量，这个变量被定义为条件变量
 
@@ -90,7 +90,7 @@ req_host_in("bfe-networks.com") && req_method_in("GET")
 bfe_host = req_host_in("bfe-networks.com") 
 ```
 
-#### 高级条件表达式
+#### 高级条件表达式（Advanced Condition Expression）
 
 - 高级条件表达式是多个条件原语和条件变量与操作符(例如与、或、非)的组合
 
