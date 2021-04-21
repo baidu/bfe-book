@@ -30,13 +30,13 @@
 
 ## 操作篇
 + [第十九章 BFE服务的安装部署](./operation/installation/installation.md)
-+ [第二十章 BFE服务的基础配置](./operation/configuration/config_basic.md)
-+ [第二十一章 配置负载均衡算法及会话保持](./operation/configuration/config_proxy.md)
-+ [第二十二章 配置HTTPS服务](./operation/configuration/config_https.md)
-+ [第二十三章 配置rewrite]
-+ [第二十四章 配置redirect]
-+ [第二十五章 请求限流]
-+ [第二十六章 支持更多协议]
++ [第二十章 BFE服务的基础配置](./operation/configuration/basic.md)
++ [第二十一章 配置负载均衡算法及会话保持](./operation/configuration/proxy.md)
++ [第二十二章 配置HTTPS服务](./operation/configuration/https.md)
++ [第二十三章 配置rewrite](./operation/configuration/rewrite.md)
++ [第二十四章 配置redirect](./operation/configuration/redirect.md)
++ [第二十五章 配置限流](./operation/configuration/prison.md)
++ [第二十六章 支持更多协议](./operation/configuration/protocol.md)
 
 ## 实现篇
 + [第二十七章 源代码结构概述](implementation/source_layout/source_layout.md)
