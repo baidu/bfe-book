@@ -61,18 +61,25 @@ BFE的安装软件包可以直接从BFE项目在github.com的页面中下载。
 ## 源代码编译方式安装
 BFE源代码完全在github.com上开源，用户也可以通过自行编译源代码的方式进行适配安装。
 
-### 环境要求
-- golang 1.13+
-- git 2.0+
+### 环境准备
+- 环境要求
+  - golang 1.13+
+  - git 2.0+
 
-#### Go语言环境准备
-下载地址为 *https://golang.org/dl/* 或者 *https://golang.google.cn/dl/*。
 
-在下载页面，用户可以根据使用的操作系统环境，下载相应的版本。
-下载后，按照 *https://golang.org/doc/install* 或者 *https://golang.google.cn/doc/install* 的说明，进行安装。
 
-#### git安装
-用户需要安装git命令，具体安装不再赘述。
++ Go语言环境准备
+
+  下载地址为 *https://golang.org/dl/* 或者 *https://golang.google.cn/dl/*。
+
+  在下载页面，用户可以根据使用的操作系统环境，下载相应的版本。
+  下载后，按照 *https://golang.org/doc/install* 或者 *https://golang.google.cn/doc/install* 的说明，进行安装。
+
+
+
++ git安装
+
+  用户需要安装git命令，具体安装不再赘述。
 
 ### BFE源码下载
 通过 *git clone* 命令，下载BFE源代码
@@ -90,7 +97,7 @@ $ make
 
 > tips: 如果遇到超时错误"https fetch: Get ... connect: connection timed out", 请设置GO_PROXY代理后重试.
 
-### 运行BEF
+### 运行BFE
 编译后完成后，可执行目标文件在目录*output/bin/*下:
 
 ```bash
@@ -112,7 +119,7 @@ BFE的镜像可以在docker hub中找到 *https://hub.docker.com/r/bfenetworks/b
 ### docker环境设置
 参考 *docker.com*，设置好系统的docker环境。
 
-### 运行BFE容器:
+### 运行BFE容器
 执行以下命令可以启动一个BFE容器
 ```bash
 # docker run -d -p 8080:8080 -p 8443:8443 -p 8421:8421 bfenetworks/bfe
@@ -141,12 +148,12 @@ BFE的镜像可以在docker hub中找到 *https://hub.docker.com/r/bfenetworks/b
 |-v                 |显示bfe的版本号                 |
 |-V                 |显示bfe的版相关的详细信息        |
 |-h                 |显示帮助                       |
----
+
 
 
 ## 查看BFE服务的运行状态
 
-BFE提供了接口，可以通过改接口查看服务运行的各种数据指标。端口缺省为8421。用户可以直接使用浏览器访问该端口，如下图：
+BFE提供了接口，可以通过该接口查看服务运行的各种状态数据。端口缺省为8421。用户可以直接使用浏览器访问该端口，如下图：
 
 ![](img/v0120_monitor.png)
 
