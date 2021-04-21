@@ -96,7 +96,6 @@ hl = srv.CallBacks.GetHandlerList(bfe_module.HandleBeforeLocation)
 if hl != nil {
     retVal, res = hl.FilterRequest(basicReq)
     ...
-    }
 }
 ```
 
