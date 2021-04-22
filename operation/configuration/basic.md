@@ -9,42 +9,16 @@
 
 下面我们通过一个简单的例子，展示如何配置BFE转发到后端集群上。
 
-现在有一个域名为“exmaple.org”网站，后端有三台服务器，instance-1,instance-2,instance-3。需要通过BFE将HTTP请求转发到后端三台服务器上。
+现在有一个域名为“example.org”网站，后端有三台服务器，instance-1,instance-2,instance-3。需要通过BFE将HTTP请求转发到后端三台服务器上。
 
 如下示意图：
-```
-                   │
-                   │example.org
-              ┌────▼────┐
-              │   BFE   │
-              └──┬─┬─┬──┘
-         ┌───────┘ │ └─────────────┐
-         │         │               │
-  ┌──────▼────┐ ┌──▼────────┐  ┌───▼───────┐
-  │ instance-1│ │ instance-2│  │ instance-3│
-  └───────────┘ └───────────┘  └───────────┘
-```
+
+![scenario](./img/scenario.png)
 
 在后续配置中，三个实例将定义为在同一个逻辑集群clusterA和逻辑子集群subCluster1中：
 
-```
-                │
-                │example.org
-                │
-           ┌────▼────┐
-           │   BFE   │
-           └────┬────┘
-                │
- ┌──────────────▼───────────────────────────────────┐
- │                                        clusterA  │
- │ ┌─────────────────────────────────────────────┐  │
- │ │                              subCluster1    │  │
- │ │ ┌───────────┐  ┌───────────┐  ┌───────────┐ │  │
- │ │ │ instance-1│  │ instance-2│  │ instance-3│ │  │
- │ │ └───────────┘  └───────────┘  └───────────┘ │  │
- │ └─────────────────────────────────────────────┘  │
- └──────────────────────────────────────────────────┘
-```
+![cluster vs instance](./img/cluster_instance.png)
+
 
 
 ## 修改基础配置文件*bfe.conf*
@@ -65,18 +39,17 @@ MonitorPort = 8421
 
 ## 转发配置流程
 
-确定基础配置文件bfe.conf后，用户可以按照以下流程继续进行配置。
+确定基础配置文件bfe.conf后，用户可以设置转发相关的配置。
 
 ![](img/conf_flow.png)
 
-如上图所示：
+转发配置的推荐流程如上图所示，主要步骤为：
 1. 配置域名：配置需要处理的域名，这也用于区分租户/产品线。
-
 2. 配置转发规则：定义消息到后端集群的转发/映射规则，即按什么规则转发消息到某个后端集群。
-
 3. 配置后端集群的属性：设置后端集群的一些参数，比如后端建连的属性，健康检查方式等。
-
 4. 配置后端集群实例：配置后端集群实例和权重信息，包括子集群的权重，子集群中的实例的权重等等。
+
+## 案例说明
 
 下面将以添加一个租户example_product为例，详细描述如何为该租户创建相关配置。
 
@@ -108,9 +81,7 @@ host_rule.data中的"HostTags"字段定义了租户信息，我们添加一个�
 ### 转发规则配置 route_rule.data
 conf/server_data_conf/route_rule.data 是BFE的分流配置文件。
 
-#### 配置示例
-
-在上述例子中，我们将定义一个后端集群cluster_A，它将代表后端服务的集群。
+在上述例子中，将定义一个后端集群cluster_A，它将代表后端服务的集群。
 
 以下示例中，“Cond”使用了条件原语req_host_in()，将请求header的Host域为"example.org"的消息，发送到后端集群cluster_A。
 
@@ -183,9 +154,9 @@ conf/server_data_conf/cluster_conf.data 为后端集群的配置文件。包含�
 * 子集群负载均衡配置 conf/cluster_conf/gslb.data
 * 实例负载均衡配置 conf/cluster_conf/cluster_table.data
 
-#### 配置示例
+#### 
 
-* glsb.data
+**glsb.data**
 该文件描述了一个集群所包含的子集群的权重。在上述例子中，我们只需要为集群“cluster_A”定义一个子集群"subCluster1"，权重为100。
 
 ```json
@@ -201,7 +172,7 @@ conf/server_data_conf/cluster_conf.data 为后端集群的配置文件。包含�
 }
 ```
 
-* cluster_table.data
+**cluster_table.data**
 
 该文件描述了子集群中的实例的信息。示例的子集群"subCluster1"将包含后端的三个实例instance-1、instance-2、instance-3。同时指定了每个实例的IP地址。
 
