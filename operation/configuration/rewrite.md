@@ -1,7 +1,7 @@
-# 重写（rewrite)的配置
-本章介绍如何配置HTTP URL重写（rewrite）。该功能对收到的HTTP请求消息的URL进行修改，再转发到后端服务。
+# 配置rewrite
+本章介绍如何配置HTTP rewrite。该功能对收到的HTTP请求消息的URL进行修改，再转发到后端服务。
 
-## 开启重写
+## 开启rewrite
 在conf/bfe.conf中，打开该模块
 ```ini
 Modules = mod_write
@@ -66,9 +66,9 @@ $ cat rewrite.data
 | Config{v}                | Object<br>重写规则列表        |
 | Config{v}[]              | Object<br>重写规则          |
 | Config{v}[].Cond         | String<br>规则条件 |
-| Config{v}[].Action       | Object<br>规则动作          | 
-| Config{v}[].Action.Cmd   | Object<br>规则动作名称          | 
-| Config{v}[].Action.Param | Object<br>规则动作参数列表      | 
+| Config{v}[].Action       | Object<br>规则动作          |
+| Config{v}[].Action.Cmd   | Object<br>规则动作名称          |
+| Config{v}[].Action.Param | Object<br>规则动作参数列表      |
 | Config{v}[].Last         | Boolean<br>当该项为true时，命中某条规则后，不再向后匹配 |
 
 ### 规则动作
