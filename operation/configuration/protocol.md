@@ -150,7 +150,7 @@
 ```
 
 ### FastCGI
-为支持h2c，将"BackendConf"中的"Protocol"设置为"fcgi"。其他可设置的参数包括请求文件的根路径"Root"和环境变量"EnvVars"。
+为支持FastCGI，将"BackendConf"中的"Protocol"设置为"fcgi"。其他可设置的参数包括请求文件的根路径"Root"和环境变量"EnvVars"。
 
 ```json
 "cluster_example": {
