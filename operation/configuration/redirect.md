@@ -1,7 +1,7 @@
-## 重定向的配置
+## 配置redirect
 本章介绍如何配置HTTP重定向（redirect）。该功能将对收到的请求直接返回重定向响应码，指示客户端跳转到新的URL。
 
-## 开启重定向
+## 开启redirect
 在conf/bfe.conf中，打开该模块
 ```ini
 Modules = mod_redirect
