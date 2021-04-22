@@ -44,13 +44,10 @@ rewrite.data 包含重定向规则，可动态加载。安装包中的示例中�
 }
 
 ```
-其为产品线*example_product*中增加了一个规则：
-1. 对满足条件"Cond"的请求，
-2. 执行"Actions"动作，重定向为https://example.org，返回码301。
-
+其为产品线*example_product*中增加了一个规则：其为产品线*example_product*中增加了一个规则：对满足条件"Cond"（请求路径的前缀为“/redirect”）的请求，执行"Actions"动作（重定向到https://example.org），返回码301。
 ## 规则配置文件
 
-### 文件格式
+### 配置格式
 
 | 配置项                     | 描述                           |
 | -------------------------- | ------------------------------ |
@@ -93,7 +90,7 @@ rewrite.data 包含重定向规则，可动态加载。安装包中的示例中�
 | | |
 |-|-|
 |请求     | http://www.example.com/unknown |
-|重定向到  | http://www.example.com/login |
+|重定向到  | http://www.example.com/more |
 
 <br />
 
