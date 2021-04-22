@@ -1,22 +1,14 @@
-# HTTPS相关配置
-BEE可以支持TLS卸载（TLS offloading），将收到的加密的HTTPS流量进行解密后，再转发给后端服务。
+# 配置HTTPS服务
+BFE可以支持TLS卸载（TLS offloading），将收到的加密的HTTPS流量进行解密后，再转发给后端服务。
 
-```
-                                          ┌───────────┐
-                                      ┌───► backend_1 │
-┌────────┐  https  ┌────────┐ http1.1 │   └───────────┘
-│ client ├────────►│  BFE   ├─────────┤
-└────────┘         └────────┘         │   ┌───────────┐
-                                      └───► backend_2 │
-                                          └───────────┘
-```
+![https](./img/https_1.png)
 
 ## HTTPS基础配置
 
 HTTPS配置包括加密套件、证书文件的配置、TLS协议相关参数的配置。使用HTTPS需要配置相应的证书文件，请提前准备好证书文件。
 
-### HTTPS端口
-在bfe.conf中定义了HTTPS的端口
+### 配置HTTPS端口
+在bfe.conf中可以配置HTTPS的端口
 
 ```ini
 [Server] 
@@ -72,7 +64,7 @@ ServerCertConf = tls_conf/server_cert_conf.data
 
 缺省证书使用字段"default"标识。
 
-### TLS规则配置
+### 配置TLS规则
 
 准备好证书之后，需要设置TLS相关的规则，比如如何选择证书。
 
@@ -101,29 +93,19 @@ TlsRuleConf = tls_conf/tls_rule_conf.data
 }
 ```
 
-这其中"SniConf"指示了使用sni的域名。"NextProtos"标识了ALPN协商中使用的协议。安全等级"Grade"定义了TLS协商中服务端可以使用的加密套件的等级，具体描述见后续章节。
+其中"SniConf"指示了使用sni的域名。"NextProtos"标识了ALPN协商中使用的协议。安全等级"Grade"定义了TLS协商中服务端可以使用的加密套件的等级，具体描述见后续章节。
 
 上述配置后，重启bfe让配置生效。就可以通过HTTPS访问配置的HTTPS端口。
 
 ## 配置TLS会话重用
 
-BFE可以配置使用TLS回话重用两种方式：Session Cache和Session Ticket
+对BFE可以配置使用TLS会话重用两种方式：Session Cache和Session Ticket。
 
 ### 配置Session Cache
 BFE使用Redis进行集中的TLS Session信息存储。多个BFE实例可以连接共享的Redis服务。连接如下图：
 
-```
-                   │
-                   │example.org
-              ┌────▼────┐      ┌─────────┐
-              │   bfe   │─────►│  redis  │
-              └──┬─┬─┬──┘      └─────────┘
-         ┌───────┘ │ └─────────────┐
-         │         │               │
-  ┌──────▼────┐ ┌──▼────────┐  ┌───▼───────┐
-  │ instance-1│ │ instance-2│  │ instance-3│
-  └───────────┘ └───────────┘  └───────────┘
-```
+![https session cache](./img/https_session_cache.png)
+
 
 为开启session cache，在bfe.conf中设置SessionCacheDisabled为false。
 ```ini
@@ -182,7 +164,7 @@ SessionTicketKeyFile = tls_conf/session_ticket_key.data
 ## 配置双向认证
 在一些场景，我们需要配置双向TLS，对客户端进行认证。BFE上可以支持配置客户端证书。
 
-在bfe.conf中配置有clientCA证书的目录：
+在bfe.conf中可以配置clientCA证书的目录：
 
 ```ini
 
@@ -277,8 +259,8 @@ Certificate:
 
 
 
-### 安全等级说明
-TLS协议配置文件中包含配置项项“Grade”，该值指定了使用的加密套件的安全级别。
+## 安全等级说明
+TLS协议配置文件中包含配置项“Grade”，该值指定了使用的加密套件的安全级别。
 
 BFE支持多种安全等级（A+/A/B/C）。各安全等级差异在于支持的协议版本及加密套件。A+等级安全性最高、连通性最低；C等级安全性最低、连通性最高。
 

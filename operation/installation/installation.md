@@ -131,7 +131,7 @@ BFE的镜像可以在docker hub中找到 *https://hub.docker.com/r/bfenetworks/b
 查看容器的运行状态，可以看到容器id为7e15304bb972
 ![](img/docker_ps.png)
 
-停止容器运行
+如果要停止容器的运行，可以执行以下命令：
 ![](img/docker_stop.png)
 
 
