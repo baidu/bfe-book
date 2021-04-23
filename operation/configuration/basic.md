@@ -107,8 +107,7 @@ conf/server_data_conf/route_rule.data 是BFE的分流配置文件。
 
 conf/server_data_conf/cluster_conf.data 为后端集群的配置文件。包含了后端集群“cluster_A”的相关配置。包括：后端基础配置、健康检查配置、GSLB基础配置和集群基础配置。
 
-上述的例子，可以使用以下配置文件中的内容，配置文件中的字段的具体描述将在在后面详述。
-
+上述的例子，可以使用以下配置：
 
 ```json
 {
@@ -131,12 +130,7 @@ conf/server_data_conf/cluster_conf.data 为后端集群的配置文件。包含�
             },
             "GslbBasic": {
                 "CrossRetry": 0,
-                "RetryMax": 2,
-                "HashConf": {
-                    "HashStrategy": 0,
-                    "HashHeader": "Cookie:UID",
-                    "SessionSticky": false
-                }
+                "RetryMax": 2
             },
             "ClusterBasic": {
                 "TimeoutReadClient": 30000,
@@ -148,6 +142,43 @@ conf/server_data_conf/cluster_conf.data 为后端集群的配置文件。包含�
 }
 ```
 
+cluster_conf.data中的配置项较多，各个项的具体描述如下：
+
+* 后端基础配置BackendConf 
+
+
+| 配置项            | 描述                           |
+| --------------------- | ----------------------- |
+| BackendConf.TimeoutConnSrv        | Integer<br>连接后端的超时时间，单位是毫秒<br>默认值2 |
+| BackendConf.TimeoutResponseHeader | Integer<br>从后端读响应头的超时时间，单位是毫秒<br>默认值60 |
+| BackendConf.MaxIdleConnsPerHost   | Integer<br>BFE实例与每个后端的最大空闲长连接数<br>默认值2 |
+| BackendConf.MaxConnsPerHost   | Integer<br>BFE实例与每个后端的最大长连接数，0代表无限制<br>默认值0 |
+| BackendConf.RetryLevel            | Integer<br>请求重试级别。0：连接后端失败时，进行重试；1：连接后端失败、转发GET请求失败时均进行重试<br>默认值0 |
+
+<br>
+* 健康检查配置CheckConf
+
+| 配置项                   | 描述                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| CheckConf.Schem         | String<br>健康检查协议，支持HTTP和TCP<br>默认值 HTTP         |
+| CheckConf.Uri           | String<br>健康检查请求URI (仅HTTP)<br>默认值 /health_check   |
+| CheckConf.Host          | String<br>健康检查请求HOST (仅HTTP)<br>默认值 ""             |
+| CheckConf.StatusCode    | Integer<br>期待返回的响应状态码 (仅HTTP)<br>默认值 0，代表任意状态码 |
+| CheckConf.FailNum       | Integer<br>健康检查启动阈值（转发请求连续失败FailNum次后，将后端实例置为不可用状态，并启动健康检查）<br>默认值5 |
+| CheckConf.SuccNum       | Integer<br>健康检查成功阈值（健康检查连续成功SuccNum次后，将后端实例置为可用状态）<br>默认值1 |
+| CheckConf.CheckTimeout  | Integer<br>健康检查的超时时间，单位是毫秒<br>默认值0（无超时）|
+| CheckConf.CheckInterval | Integer<br>健康检查的间隔时间，单位是毫秒<br>默认值1 |
+
+<br>
+
+* GSLB基础配置GslbBasic
+
+| 配置项                           | 描述                                       |
+| -------------------------------- | ------------------------------------------ |
+| GslbBasic.CrossRetry             | Integer<br>跨子集群最大重试次数<br>默认值0 |
+| GslbBasic.RetryMax               | Integer<br>子集群内最大重试次数<br>默认值2 |
+
+<br>
 
 ### 配置后端集群实例
 该部分配置包括：

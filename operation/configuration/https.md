@@ -152,14 +152,18 @@ conf/server_data_conf/name_conf.data中指定：
 
 ### 配置Session Ticket
 
+如需支持TLS session ticket，在bfe.conf文件中，设置SessionTicketsDisabled 为 false：
+
 ```
 [SessionTicket]
 # disable tls session ticket or not
-SessionTicketsDisabled = true
+SessionTicketsDisabled = false
 # session ticket key
 SessionTicketKeyFile = tls_conf/session_ticket_key.data
 ```
+在SessionTicketKeyFile指向的文件中，用户可以配置加密ticket的密钥，格式为包含字符a-z/0-9，长度为48的字符串。
 
+开启上述配置后，如client支持session ticket，TLS握手中就可实现基于session ticket的会话重用。
 
 ## 配置双向认证
 在一些场景，我们需要配置双向TLS，对客户端进行认证。BFE上可以支持配置客户端证书。
