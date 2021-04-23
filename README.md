@@ -25,7 +25,7 @@
 + [第十四章 日志机制](./design/log/log.md)
 + [第十五章 超时设置](./design/timeout/timeout.md)
 + [第十六章 配置管理](./design/configuration/configuration.md)
-+ 第十七章 TLS优化机制
++ [第十七章 HTTPS优化机制](design/https/https.md)
 + [第十八章 信息的透传](./design/info_pass_through/pass_through.md)
 
 ## 操作篇
