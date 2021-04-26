@@ -232,7 +232,7 @@ BFE开源项目所支持条件原语的列表，可以查看[BFE开源官网](ht
 - **key_exist**：是否存在指定的key
   - 如：req_query_key_exist()
 - **value_in**：对给定的key，其value是否落在某个集合中
-  - 如：req_query_key_exist()
+  - 如：req_header_value_in()
 - **value_prefix_in**：对给定的key，其value的前缀是否在某个集合中
   - 如：req_header_value_prefix_in()
 - **value_suffix_in**：对给定的key，其value的后缀是否在某个集合中

@@ -107,7 +107,7 @@ BFE平台是由很多模块构成的一个比较复杂的分布式系统，可�
 
 + 主流接入协议的支持
 
-  包括：HTTP，HTTPS，SPDY, HTTP/2, Web Socket，TLS
+  包括：HTTP，HTTPS，SPDY，HTTP/2，Web Socket，TLS
 
 + 灵活的模块框架
 
