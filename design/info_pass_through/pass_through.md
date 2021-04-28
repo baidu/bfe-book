@@ -1,6 +1,6 @@
 # 信息的透传
 
-作为一个HTTP反向代理，BFE除了转发原始的HTTP请求之外，还会通过在HTTP Header中增加字段的方式向下游的产品线传递一些额外的信息。
+作为一个HTTP反向代理，BFE除了转发原始的HTTP请求之外，还会通过在HTTP Header中增加字段的方式向后端或用户传递一些额外的信息。
 
 ## 客户端IP地址的透传
 
@@ -56,9 +56,11 @@ BFE在扩展模块mod_header中默认提供了捎带客户端IP地址和端口�
 | REQ_HEADER_SET | 设置请求头 | HeaderName, HeaderValue |
 | REQ_HEADER_ADD | 添加请求头 | HeaderName, HeaderValue |
 | REQ_HEADER_DEL | 删除请求头 | HeaderName              |
+| REQ_HEADER_RENAME | 重命名请求头 | HeaderName, HeaderName2 |
 | RSP_HEADER_SET | 设置响应头 | HeaderName, HeaderValue |
 | RSP_HEADER_ADD | 添加响应头 | HeaderName, HeaderValue |
 | RSP_HEADER_DEL | 删除响应头 | HeaderName              |
+| REQ_HEADER_RENAME | 重命名响应头 | HeaderName, HeaderName2 |
 
 ### 例子
 
@@ -109,25 +111,29 @@ BFE在扩展模块mod_header中默认提供了捎带客户端IP地址和端口�
 
 在上面的例子中，在设置"X-Bfe-Log-Id"和"X-Bfe-Vip"时，使用了内置的变量。在mod_header中还提供了其它内置变量，可以在设置Header时使用。
 
-| 变量名                            | 含义                           | 依赖条件          |
-| --------------------------------- | ------------------------------ | ----------------- |
-| %bfe_client_ip                    | 客户端IP                       |                   |
-| %bfe_client_port                  | 客户端端口                     |                   |
-| %bfe_request_host                 | 请求Host                       |                   |
-| %bfe_session_id                   | 会话ID                         |                   |
-| %bfe_log_id                       | 请求ID                         | 需要启用mod_logid |
-| %bfe_cip                          | 客户端IP (CIP)                 |                   |
-| %bfe_vip                          | 服务端IP (VIP)                 |                   |
-| %bfe_server_name                  | BFE实例地址                    |                   |
-| %bfe_cluster                      | 目的后端集群                   |                   |
-| %bfe_backend_info                 | 后端信息                       |                   |
-| %bfe_ssl_resume                   | 是否TLS/SSL会话复用            |                   |
-| %bfe_ssl_cipher                   | TLS/SSL加密套件                |                   |
-| %bfe_ssl_version                  | TLS/SSL协议版本                |                   |
-| %bfe_ssl_ja3_raw                  | TLS/SSL客户端JA3算法指纹数据   |                   |
-| %bfe_ssl_ja3_hash                 | TLS/SSL客户端JA3算法指纹哈希值 |                   |
-| %bfe_protocol                     | 访问协议                       |                   |
-| %client_cert_serial_number        | 客户端证书序列号               |                   |
-| %client_cert_subject_title        | 客户端证书Subject title        |                   |
-| %client_cert_subject_common_name  | 客户端证书Subject Common Name  |                   |
-| %client_cert_subject_organization | 客户端证书Subject Organization |                   |
+| 变量名                                   | 含义                                  | 依赖条件          |
+| ---------------------------------------- | ------------------------------------- | ----------------- |
+| %bfe_client_ip                           | 客户端IP                              |                   |
+| %bfe_client_port                         | 客户端端口                            |                   |
+| %bfe_request_host                        | 请求Host                              |                   |
+| %bfe_session_id                          | 会话ID                                |                   |
+| %bfe_log_id                              | 请求ID                                | 需要启用mod_logid |
+| %bfe_cip                                 | 客户端IP (CIP)                        |                   |
+| %bfe_vip                                 | 服务端IP (VIP)                        |                   |
+| %bfe_server_name                         | BFE实例地址                           |                   |
+| %bfe_cluster                             | 目的后端集群                          |                   |
+| %bfe_backend_info                        | 后端信息                              |                   |
+| %bfe_ssl_resume                          | 是否TLS/SSL会话复用                   |                   |
+| %bfe_ssl_cipher                          | TLS/SSL加密套件                       |                   |
+| %bfe_ssl_version                         | TLS/SSL协议版本                       |                   |
+| %bfe_ssl_ja3_raw                         | TLS/SSL客户端JA3算法指纹数据          |                   |
+| %bfe_ssl_ja3_hash                        | TLS/SSL客户端JA3算法指纹哈希值        |                   |
+| %bfe_protocol                            | 访问协议                              |                   |
+| %client_cert_serial_number               | 客户端证书序列号                      |                   |
+| %client_cert_subject_title               | 客户端证书Subject title               |                   |
+| %client_cert_subject_common_name         | 客户端证书Subject Common Name         |                   |
+| %client_cert_subject_organization        | 客户端证书Subject Organization        |                   |
+| %client_cert_subject_organizational_unit | 客户端证书Subject Organizational Unit |                   |
+| %client_cert_subject_province            | 客户端证书Subject Province            |                   |
+| %client_cert_subject_country             | 客户端证书Subject Country             |                   |
+| %client_cert_subject_locality            | 客户端证书Subject Locality            |                   |

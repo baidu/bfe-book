@@ -13,16 +13,16 @@ BFE中有一些涉及超时的配置，包括：
 
 BFE和客户端间通信的超时包括：
 
-+ **读用户请求超时**：从连接建立开始，到完整读取到来自客户端请求的HTTP Header
-+ **读用户Body超时**: 从完成读取HTTP Header，到完成读取Body
-+ **写响应超时**: 从发送Response开始，到将Response完全发送给客户端
-+ **与用户长连接超时**：从上一个请求结束，到完成读取下一个请求的HTTP Header
++ **读用户请求头部超时**：从连接建立开始，到完整读取到来自客户端请求头部
++ **读用户请求主体超时**: 从完成读取请求头部，到完成读取请求主体
++ **写响应超时**: 从发送响应头部开始，到将响应完全发送给客户端
++ **与用户长连接超时**：从上一个请求结束，到完成读取下一个请求头部
 
 ![timeout between BFE and client](./timeout_BFE_client.png)
 
 ### 配置方法
 
-+ **读用户请求超时**
++ **读用户请求头部超时**
 
   在[/conf/bfe.conf](https://github.com/bfenetworks/bfe/tree/master/conf)中统一配置，单位为秒。这个配置只能在程序重新启动时生效，无法热加载。
 
@@ -34,7 +34,7 @@ ClientReadTimeout = 60
 ...
 ```
 
-+ **读用户Body超时**
++ **读用户请求主体超时**
 
   在[/conf/server_data_conf/cluster_conf.data](https://github.com/bfenetworks/bfe/blob/master/conf/server_data_conf/cluster_conf.data)中，针对各集群（Cluster）独立配置，单位为毫秒。
 
@@ -72,7 +72,7 @@ ClientReadTimeout = 60
 }
 ```
 
-  在[/conf/bfe.conf](https://github.com/bfenetworks/bfe/tree/master/conf)中，包含写响应超时的缺省配置。这个配置适用于不知道请求对应的集群、又需要控制与客户端超时的场景。例如：还没有执行到通过路由转发规则确定后端集群、而需要从bfe直接返回自定义响应的时候，使用缺省的超时配置。
+  在[/conf/bfe.conf](https://github.com/bfenetworks/bfe/tree/master/conf)中，包含写响应超时的缺省配置。这个配置适用于不知道请求对应的集群、又需要控制与客户端超时的场景。例如：还没有执行到通过路由转发规则确定后端集群、而需要从BFE直接返回自定义响应的时候，使用缺省的超时配置。
 
 ```
 [Server]
@@ -110,7 +110,7 @@ ClientWriteTimeout = 60
 BFE和后端实例间通信的超时包括：
 
 + **连接后端超时**：从向后端发起建立连接，到建立连接完成
-+ **读后端响应头部超时**：从BFE开始发送请求，到完成接收Response Header
++ **读后端响应头部超时**：从BFE开始发送请求，到完成接收响应头部
 
 ![timeout between BFE and backend](./timeout_BFE_backend.png)
 
