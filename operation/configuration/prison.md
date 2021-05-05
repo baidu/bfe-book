@@ -130,7 +130,7 @@ ProductRulePath = mod_prison/prison.data
 
 * query
 
-以指定的Cookie为维度，统计请求量来做限流。
+以指定的query为维度，统计请求量来做限流。
 
 * UseHeaders
 
