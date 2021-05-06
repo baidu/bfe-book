@@ -1,10 +1,33 @@
-# 《深入理解BFE》（《BFE Inside》）
+# 深入理解BFE
 本书围绕BFE开源项目，向读者介绍网络接入的相关技术原理，说明BFE开源软件的设计思想，及如何基于BFE开源软件搭建网络接入平台。具有开发能力的读者也可根据本书的说明，按照自己的需要开发BFE的扩展模块，或者向BFE开源项目贡献代码。
 
-+ 主编：章淼，杨思杰，戴明，陶春华
-+ BFE开源项目内部wiki: http://wiki.baidu.com/pages/viewpage.action?pageId=1065820757
+## BFE开源项目
+
+BFE是百度统一的七层负载均衡接入转发平台。BFE平台从2012年开始建设，截至2020年底，BFE平台每日转发的请求超过万亿，日峰值请求超过1000万QPS，在业界有巨大影响力。2019年7月，BFE的转发引擎对外开源，并于2020年6月被CNCF（云原生计算基金会）接受为“沙盒项目”（Sandbox Project），这是网络方向中国首个被CNCF接受的开源项目。
+
+BFE开源项目地址: https://github.com/bfenetworks/bfe
+
+## 本书作者
+
+| 姓名   | Github ID                                           |
+| ------ | --------------------------------------------------- |
+| 章淼   | [mileszhang2016](https://github.com/mileszhang2016) |
+| 杨思杰 | [iyangsj](https://github.com/iyangsj)               |
+| 戴明   | [daimg](https://github.com/daimg)                   |
+| 陶春华 |                                                     |
+
+## 版权许可
+
+本书采用[署名-非商业性使用-相同方式共享 4.0（CC BY-NC-SA 4.0）](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)许可，发行版权归属于电子工业出版社博文视点，未经授权请勿转载、印刷和发行。
+
+本书著作权归属于BFE开源社区，本书作者对其所编写的内容保留署名权，稿酬将用于BFE开源社区建设。
+
+
+
+# 全书目录
 
 ## 背景篇
+
 + [第一章 BFE简介](./background/what-is-bfe.md)
 
 ## 原理篇
