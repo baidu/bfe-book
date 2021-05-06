@@ -12,47 +12,78 @@ BFE支持多种方式进行安装，本章将介绍以下三种方式：
 ### 获取BFE软件安装包
 BFE的安装软件包可以直接从BFE项目在github.com的页面中下载。
 对于不同的操作系统(Linux/MacOS/windows)，页面上都提供了相应的软件包。
-访问如下地址下载：
 
-    https://github.com/bfenetworks/bfe/releases。
+下载地址如下：
+
+    https://github.com/bfenetworks/bfe/releases
+读者可根据操作系统类型，选择所需的软件版本。
 
 ### 下载BFE软件包
-读者可根据操作系统类型，选择所需的软件版本。
-以Linux环境为例，下载BFE的0.12.0版本:
+以Linux环境为例，下载BFE的1.0.0版本。
 
-在下载页面上，找到"BFE v0.12.0"，点击展开“Asserts”，如下图：
+在上述下载页面上，找到"BFE v1.0.0"，点击展开“Asserts”，如下图：
 
-![](img/v0120_assert.png)
+![](img/v100_assert.png)
 
-点击下载名为"bfe_0.12.0_linux_amd64.tar.gz"的压缩包。对于Linux环境，下载地址为： *https://github.com/bfenetworks/bfe/releases/download/v0.12.0/bfe_0.12.0_linux_amd64.tar.gz*
+点击下载名为"bfe_1.0.0_linux_amd64.tar.gz"的压缩包。
 
 ### BFE软件包中的内容
 
-解压下载的文件bfe_0.12.0_linux_amd64.tar.gz：
+解压下载的文件bfe_1.0.0_linux_amd64.tar.gz：
 
-![](img/v0120_files.png)
+```
+sh-4.2# tar zxf bfe_1.0.0_linux_amd64.tar.gz 
+sh-4.2# 
+sh-4.2# cd bfe_1.0.0_linux_amd64
+sh-4.2# 
+sh-4.2# ls 
+CHANGELOG.md	LICENSE		README.md	bin		conf
+```
 
 其中包括了两个主要目录：
 * bin ： 该目录包含可执行程序bfe。
 
-![](img/v0120_file_bin.png)
+```
+sh-4.2$ ls bin
+bfe
+```
 
 * conf： 该目录中包含了bfe的配置文件。其中，bfe.conf为BFE的主配置文件。
 
-![](img/v0120_file_conf.png)
+```
+sh-4.2$ ls conf
+bfe.conf		mod_block		mod_header		mod_static		server_data_conf
+cluster_conf		mod_compress		mod_key_log		mod_tag			tls_conf
+mod_access		mod_cors		mod_markdown		mod_trace
+mod_auth_basic		mod_doh			mod_prison		mod_trust_clientip
+mod_auth_jwt		mod_errors		mod_redirect		mod_userid
+mod_auth_request	mod_geo			mod_rewrite		mod_waf
+```
 
 ### 运行BFE服务
 
 执行如下命令，在系统后台启动一个BFE实例。该实例使用了缺省配置启动。
-![](img/v0120_run.png)
+```
+sh-4.2# cd bin
+sh-4.2# ./bfe -c ../conf -l ../log &
+[1] 31024
+```
+
 检查端口8080，可以发现已经处于listen状态
-![](img/v0120_port.png)
+```
+sh-4.2$ ss -nltp | grep 8080
+0      2048                           *:8080                          *:*      users:(("bfe",31024,10))
+```
 
 ### 停止BFE服务
 
 如需要停止BFE服务，直接执行kill命令: 
 
-![](img/v0120_kill.png)
+```
+sh-4.2$ kill 31024
+sh-4.2$ 
+[1]+  Done                    ./bfe -c ../conf -l ../log
+```
 
 ### 在MacOs或windows中下载安装BFE
 与Linux系统下安装过程相似：在下载页面 *https://github.com/bfenetworks/bfe/releases* 中下载对应操作系统版本的BFE安装包后，就可启动BFE服务。
@@ -155,6 +186,6 @@ BFE的镜像可以在docker hub中找到 *https://hub.docker.com/r/bfenetworks/b
 
 BFE提供了接口，可以通过该接口查看服务运行的各种状态数据。端口缺省为8421。用户可以直接使用浏览器访问该端口，如下图：
 
-![](img/v0120_monitor.png)
+![](img/v100_monitor.png)
 
 
