@@ -1,11 +1,12 @@
 # 支持更多协议
 
-本章将介绍如何配置BFE以支持更多的协议，如：HTTP/2、SPDY、TLS、WebSocket、FastCGI。
+本章将介绍如何配置BFE以支持更多的协议，如：HTTP/2、SPDY、TLS、WebSocket、FastCGI等。
 
 ## HTTP/2配置
 为支持HTTP/2 over TLS，用户需修改TLS规则配置文件 conf/tls_conf/tls_rule_conf.data。
 
-在需要开启的产品线中，修改"NextProtos"域，增加"h2"选项，这将在TLS握手的ALPN协商中增加对HTTP2的支持。如果客户端也支持HTTP/2，建立的连接将使用HTTP/2。
+在该文件中，对需要配置的产品线，修改"NextProtos"域，增加"h2"选项，这将在TLS握手的ALPN协商中增加对HTTP2的支持。如果客户端也支持HTTP/2，建立的连接将使用HTTP/2。
+如下述实例，我们对产品线"example_product"进行修改，增加了"h2"。
 
 ```json
 "example_product": {
@@ -16,7 +17,7 @@
 
 ```
 
-使用curl进行测试，可以看到已经使用HTTP/2。
+使用curl连接BFE的HTTPS端口进行测试，可以看到连接已经使用HTTP/2。
 
 ```
 # curl -v -k -H "Host: example.org"  https://localhost:8443
@@ -40,7 +41,10 @@
 ...
 ```
 
-上述配置会同时支持HTTP/1.1和HTTP/2。如果希望只使用HTTP/2，可以在"NextProtos"设置"h2;level=2"。level为协商级别，2表示必选。
+上述"NextProtos"配置同时包含了["h2", "http/1.1"]，这表示会同时支持HTTP/2和HTTP/1.1，其中HTTP/2的优先级较高。
+
+如果希望只使用HTTP/2，可以将"NextProtos"设置为"h2;level=2"。level为协商级别，2表示必选。如下示例：
+
 ```json
 "example_product": {
     ...
@@ -63,7 +67,8 @@
 * 支持WS（WebSocket over TCP）
 
 支持ws无需特殊配置，只需配置好支持ws的后端服务和正确的转发路由即可。
-使用curl进行测试，携带header："Connection: Upgrade"和"Upgrade: websocket"，可以看到connection升级为websocket。
+
+使用curl连接BFE的HTTP端口进行测试，带上header："Connection: Upgrade"和"Upgrade: websocket"。我们可以看到连接升级为使用websocket，如下：
 
 ```
 # curl -v \
@@ -101,7 +106,7 @@
     ...
 }
 ```
-使用curl进行测试，可以看到连接同样的升级为WebSocket
+使用curl连接BFE的HTTPS端口进行测试，可以看到连接也升级为使用WebSocket：
 ```
 # curl -v -k \
        -H "Host: example.org" \
@@ -132,7 +137,14 @@
 
 ## 连接后端服务的协议
 
-在后端集群配置文件conf/server_data_conf/cluster_conf.data中，我们可以指定连接后端实例使用的协议。
+BFE支持使用不同的协议连接后端服务器。我们可以在后端集群配置文件conf/server_data_conf/cluster_conf.data中指定该配置。支持的协议包括：
+* HTTP
+* h2c
+* FastCGI
+
+### HTTP
+
+HTTP为连接后端使用的缺省协议，无需特殊配置。
 
 ### h2c
 

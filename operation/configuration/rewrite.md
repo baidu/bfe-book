@@ -1,5 +1,5 @@
 # 配置rewrite
-本章介绍如何配置HTTP rewrite。该功能对收到的HTTP请求消息的URL进行修改，再转发到后端服务。
+本章介绍如何配置HTTP rewrite。该功能对收到的HTTP请求消息进行修改，再转发到后端服务。
 
 ## 开启rewrite
 在conf/bfe.conf中，打开该模块
@@ -22,7 +22,7 @@ $ cat mod_rewrite.conf
 DataPath = mod_rewrite/rewrite.data
 ```
 
-rewrite.data 包含rewrite规则，可动态加载。安装包中的示例中的配置文件如下：
+rewrite.data 包含rewrite规则，可动态加载。安装包中的示例配置文件如下：
 
 ```
 $ cat rewrite.data 
@@ -47,50 +47,17 @@ $ cat rewrite.data
 }
 
 ```
-其为产品线*example_product*中增加了一个规则：
-1. 对满足条件"Cond"的请求，
-2. 执行"Actions"动作，包含动作名"Cmd"和对应的参数，
-3. 如果"Last"为true，停止执行后续动作，否则继续匹配下一条规则。
+上述配置为产品线*example_product*中增加了一个规则：对满足条件"Cond"的请求，执行"Actions"动作（包含动作名"Cmd"和对应的参数），如果"Last"为true，停止执行后续动作，否则继续匹配下一条规则。
 
-最终效果，该规则修改了请求中以/rewrite开头的Path，增加一段路径/bfe/。Path从/rewrite变为/bfe/rewrite。
+最终，该规则将修改Path为/rewrite开头的请求，为其增加路径前缀/bfe/，也就是将Path从/rewrite变为/bfe/rewrite。
 
-## 规则配置文件
-### 配置格式
-规则配置文件rewrite.data的定义如下：
 
-| 配置项                   | 描述                  |
-| ------------------------ | --------------------- |
-| Version                  | String<br>配置文件版本           |
-| Config                   | Object<br>各产品线的重写规则列表    |
-| Config{k}                | String<br>产品线名称           |
-| Config{v}                | Object<br>重写规则列表        |
-| Config{v}[]              | Object<br>重写规则          |
-| Config{v}[].Cond         | String<br>规则条件 |
-| Config{v}[].Action       | Object<br>规则动作          |
-| Config{v}[].Action.Cmd   | Object<br>规则动作名称          |
-| Config{v}[].Action.Param | Object<br>规则动作参数列表      |
-| Config{v}[].Last         | Boolean<br>当该项为true时，命中某条规则后，不再向后匹配 |
+## 重写动作
 
-### 规则动作
-规则文件中的"Cmd"支持下述值，具体含义如下：
-
-| 动作                      | 描述                               |
-| ------------------------- | ---------------------------------- |
-| HOST_SET                  | 设置host                           |
-| HOST_SUFFIX_REPLACE       | 替换域名后缀                           |
-| HOST_SET_FROM_PATH_PREFIX | 根据path前缀设置host               |
-| PATH_SET                  | 设置path                           |
-| PATH_PREFIX_ADD           | 增加path前缀                       |
-| PATH_PREFIX_TRIM          | 删除path前缀                       |
-| QUERY_ADD                 | 增加query                          |
-| QUERY_DEL                 | 删除query                          |
-| QUERY_RENAME              | 重命名query                        |
-| QUERY_DEL_ALL_EXCEPT      | 删除除指定key外的所有query         |
-
-## 重写动作的详细描述
+"Actions"中的"Cmd"指示了具体的重写动作。
 
 ### HOST_SET
-设置请求的header中的Host字段。
+设置请求header中的Host值，参数为需设置的值。
 
 示例：
 ```json    
@@ -109,7 +76,7 @@ $ cat rewrite.data
 <br />
 
 ### HOST_SET_FROM_PATH_PREFIX
-根据path前缀设置host：如果Path为/x.example.com/xxxx，设置Host为 x.example.com，uri为xxxx。
+将Path中的第一段设置为Host的值，并在Path中去掉该段。例如：如果Path为/x.example.com/xxxx，设置Host为 x.example.com，PATH为/xxxx。
 
 示例：
 ```json  
@@ -129,7 +96,7 @@ $ cat rewrite.data
 
 
 ### HOST_SUFFIX_REPLACE
-替换域名后缀。指定两个参数，分别为被替换的字符串和替换后的字符串。
+替换域名中的特定后缀。两个参数分别为被替换的后缀字符串和替换后的字符串。
 
 示例：
 ```json  
@@ -148,7 +115,7 @@ $ cat rewrite.data
 <br />
 
 ### PATH_SET
-设置Path，参数指定新的Path。
+设置Path为指定值，参数为的新Path值。
 
 示例：
 ```json  
@@ -167,7 +134,7 @@ $ cat rewrite.data
 <br />
 
 ### PATH_PREFIX_ADD
-为path增加前缀，参数指定需增加的前缀。
+为Path增加前缀，参数为需增加的前缀。
 
 示例：
 ```json  
@@ -186,7 +153,7 @@ $ cat rewrite.data
 <br />
 
 ### PATH_PREFIX_TRIM
-删除Path前缀，参数指定需删除的前缀。
+删除Path前缀，参数为需删除的前缀。
 
 示例：
 ```json  

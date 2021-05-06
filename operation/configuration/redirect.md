@@ -1,5 +1,5 @@
 ## 配置redirect
-本章介绍如何配置HTTP重定向（redirect）。该功能将对收到的请求直接返回重定向响应码，指示客户端跳转到新的URL。
+本章介绍如何配置HTTP重定向（redirect）。该功能将对收到的请求返回重定向响应码，指示客户端跳转到新的URL。
 
 ## 开启redirect
 在conf/bfe.conf中，打开该模块
@@ -44,36 +44,10 @@ rewrite.data 包含重定向规则，可动态加载。安装包中的示例中�
 }
 
 ```
-其为产品线*example_product*中增加了一个规则：其为产品线*example_product*中增加了一个规则：对满足条件"Cond"（请求路径的前缀为“/redirect”）的请求，执行"Actions"动作（重定向到https://example.org），返回码301。
-## 规则配置文件
+上述配置为产品线*example_product*中增加了一个规则：对满足条件"Cond"（请求路径的前缀为“/redirect”）的请求，执行"Actions"动作（重定向到https://example.org），返回HTTP响应码为301。
 
-### 配置格式
-
-| 配置项                     | 描述                           |
-| -------------------------- | ------------------------------ |
-| Version                    | String<br>配置文件版本         |
-| Config                     | Object<br>各产品线的重定向规则 |
-| Config{k}                  | String<br>产品线名称           |
-| Config{v}                  | String<br>产品线重定向规则表   |
-| Config{v}[]                | String<br>产品线重定向规则     |
-| Config{v}[].Cond           | String<br>规则条件 |
-| Config{v}[].Actions        | Object<br>规则动作             |
-| Config{v}[].Actions.Cmd    | String<br>规则动作名称         |
-| Config{v}[].Actions.Params | Object<br>规则动作参数         |
-| Config{v}[].Status         | Integer<br>HTTP状态码，301/302等   |
-
-
-### 规则动作
-规则文件中的"Cmd"支持下述值，具体含义如下：
-
-| 动作           | 描述                                              |
-| -------------- | ------------------------------------------------- |
-| URL_SET        | 设置重定向URL为指定值                             |
-| URL_FROM_QUERY | 设置重定向URL为指定请求Query值                    |
-| URL_PREFIX_ADD | 设置重定向URL为原始URL增加指定前缀                |
-| SCHEME_SET     | 设置重定向URL为原始URL并修改协议(支持HTTP和HTTPS) |
-
-## 重定向动作的详细描述
+## 重定向动作
+"Actions"中的"Cmd"指示了如何设置重定向中的URL。
 
 ### URL_SET
 重定向请求到指定URL，参数为重定向的URL。

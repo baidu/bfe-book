@@ -52,48 +52,7 @@ ProductRulePath = mod_prison/prison.data
 	}
 }
 ```
-上述示例对路径为“/prison”的请求进行限流，针对cookies中不同的UID，设置上述访问限制。
-
-## 规则配置文件
-
-### 配置格式
-
-| 配置项                   | 描述                                                         |
-| ------------------------ | ------------------------------------------------------------ |
-| Version                  | String<br>配置文件版本                                       |
-| Config                   | Object<br>各产品线的prison规则列表                           |
-| Config{k}                | String<br>产品线名称                                         |
-| Config{v}                | Array<br>prison规则列表                                      |
-| Config{v}[]              | Object<br>单条prison规则                                     |
-| Config{v}[].Cond         | String<br>规则条件|
-| Config{v}[].AccessSignConf | Object<br>计算请求签名的配置，其中签名被用来确定是否为同类请求 |
-| Config{v}[].AccessSignConf.UseClientIP | Boolean<br>计算请求签名时是否使用ClientIP |
-| Config{v}[].AccessSignConf.UseUrl | Boolean<br>计算请求签名时是否使用请求的Url |
-| Config{v}[].AccessSignConf.UseHost | Boolean<br>计算请求签名时是否使用host |
-| Config{v}[].AccessSignConf.UsePath | Boolean<br>计算请求签名时是否使用请求Path |
-| Config{v}[].AccessSignConf.UseHeaders | Boolean<br>计算请求签名时是否使用header |
-| Config{v}[].AccessSignConf.UrlRegexp | String<br>计算请求签名时使用URL中匹配了UrlRegexp的子串 |
-| Config{v}[].AccessSignConf.[]Qeury | Array<br>计算请求签名时使用的query key |
-| Config{v}[].AccessSignConf.[]Header | Array<br>计算请求签名时使用的header key |
-| Config{v}[].AccessSignConf.[]Cookie | Array<br>计算请求签名时使用的cookie key |
-| Config{v}[].Action | Object<br>规则动作 |
-| Config{v}[].Action.Cmd | String<br>规则动作名称  |
-| Config{v}[].Action.Params | Array<br>规则动作参数列表 |
-| Config{v}[].CheckPeriod | Integer<br>检测周期（秒） |
-| Config{v}[].StayPeriod | Integer<br>命中规则后的封禁时长 :  惩罚时长（秒） |
-| Config{v}[].Threshold | Integer<br>限流阈值 |
-| Config{v}[].AccessDictSize | Integer<br>访问统计表大小 |
-| Config{v}[].PrisonDictSize | Integer<br>访问封禁表大小 |
-
-### 规则动作
-| 动作                      | 描述                               |
-| ------------------------- | ---------------------------------- |
-| CLOSE                     | 关闭用户连接                     |
-| FINISH                    | 回复403响应并关闭用户连接     |
-| PASS                      | 正常转发请求 |
-| REQ_HEADER_SET            | 修改请求头部                   |
-
-<br>
+上述示例对路径为“/prison”的请求进行限流。其中，"accessSignConf"指示了限制的流量的维度，具体见后续描述。本例子中，将统计cookies中的"UID"，限制不同"UID"的访问流量。
 
 ## 限制特定维度的流量
 
