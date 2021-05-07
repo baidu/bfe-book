@@ -14,7 +14,7 @@ BFE开源项目地址: https://github.com/bfenetworks/bfe
 | 章淼   | [mileszhang2016](https://github.com/mileszhang2016) |
 | 杨思杰 | [iyangsj](https://github.com/iyangsj)               |
 | 戴明   | [daimg](https://github.com/daimg)                   |
-| 陶春华 |                                                     |
+| 陶春华 | [ohscartao](https://github.com/ohscartao)           |
 
 ## 版权许可
 
