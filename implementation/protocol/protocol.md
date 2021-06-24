@@ -409,7 +409,7 @@ func (sc *serverConn) writeFrames() {
 主协程与其它协程通过管道(golang Chan)进行通信, 例如:
 
  * BodyReadChan：请求处理协程读取请求Body后，通过BodyReadChan向主协程发送读结果消息，主协议接收到消息执行流量控制操作并更新流量控制窗口
- * WriteMsgChan: 请求处理协程发送响应后，通过WriteMsgChan向主协程发送写申请消息，主协议接收到消息后，转换为HTTP2数据帧并放入流发送队列。在合适到时机
+ * WriteMsgChan: 请求处理协程发送响应后，通过WriteMsgChan向主协程发送写申请消息，主协议接收到消息后，转换为HTTP2数据帧并放入流发送队列
  * ReadChan/SendChan/WroteChan：从连接上获取或发送HTTP2协议帧
 
 ```go
