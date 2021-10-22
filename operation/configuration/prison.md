@@ -8,14 +8,14 @@ Modules = mod_prison
 ```
 
 ## 模块配置
-模块配置在目录conf/mod_redirect/中，包含两个文件：
+模块配置在目录conf/mod_prison/中，包含两个文件：
 
 ```
 # ls
 mod_prison.conf	prison.data
 ```
 
-与其他模块配置相似，mod_prison.conf为模块基础配置文件，指向redirect规则文件。
+与其他模块配置相似，mod_prison.conf为模块基础配置文件，指向prison规则文件。
 ```ini
 [basic]
 ProductRulePath = mod_prison/prison.data
