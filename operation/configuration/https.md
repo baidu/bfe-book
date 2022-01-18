@@ -77,7 +77,7 @@ TlsRuleConf = tls_conf/tls_rule_conf.data
     "DefaultNextProtos": ["http/1.1"],
     "Config": {
         "example_product": {
-            "SniConf": "example.org",
+            "SniConf": ["example.org"],
             "CertName": "example.org.cert",
             "NextProtos": [
                 "http/1.1"
