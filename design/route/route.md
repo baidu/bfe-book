@@ -29,7 +29,7 @@
 
 在转发表中，使用条件表达式来描述以上转发条件。
 
-![forwarding table](./bfe-forwarding-table.png)
+![forwarding table](./bfe-forwarding-table-1.png)
 
 ## 条件表达式
 
