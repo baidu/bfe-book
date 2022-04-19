@@ -1,6 +1,6 @@
 # BFE的代码组织
 
-BFE最新的代码可以从BFE开源项目发布页面https://github.com/bfenetworks/bfe/releases/下载。本章将以BFE v1.0.0版本为例介绍BFE。
+BFE最新的代码可以从BFE开源项目发布页面 https://github.com/bfenetworks/bfe/releases 下载。本章将以BFE v1.0.0版本为例介绍BFE。
 
 在代码目录的顶层可以看到BFE包含如下目录或文件：
 
