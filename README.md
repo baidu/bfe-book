@@ -6,7 +6,7 @@
 
 可通过扫描下方的二维码优惠购买。
 
-![code](./code.png)
+![code](./new_code.png)
 
 
 ## BFE开源项目
