@@ -75,16 +75,16 @@ As a large Internet enterprise, Baidu has a complex scene of multiple regions an
 
 + GTC (Global Traffic Control): Internet traffic dispatching system. It is used to schedule external network traffic between network entrances.
 
-In terms of network traffic scheduling, there are two possible technical solutions: DNS, or BGP routing. Because of bandwidth charges and other reasons, the IP addresses provided by operators is widely used in China, rather than IP addresses provided by website service providers. Therefore, GTC takes effect mainly based on DNS.
+  In terms of network traffic scheduling, there are two possible technical solutions: DNS, or BGP routing. Because of bandwidth charges and other reasons, the IP addresses provided by operators is widely used in China, rather than IP addresses provided by website service providers. Therefore, GTC takes effect mainly based on DNS.
 
 + HTTPDNS: mobile domain name resolution. It is used to provide domain name resolution service for mobile apps.
 
-DNS, as an important infrastructure of the Internet, has always been vulnerable to hijacking, slow to take effect, low resolution accuracy and other inherent problems. With the development of mobile Internet, especially the widespread use of mobile APP, new opportunities are provided to solve DNS problems. HTTPDNS is based on encrypted web services, which can solve a series of DNS problems and has been widely used on all important mobile apps of Baidu.
+  DNS, as an important infrastructure of the Internet, has always been vulnerable to hijacking, slow to take effect, low resolution accuracy and other inherent problems. With the development of mobile Internet, especially the widespread use of mobile APP, new opportunities are provided to solve DNS problems. HTTPDNS is based on encrypted web services, which can solve a series of DNS problems and has been widely used on all important mobile apps of Baidu.
 
 + BGW (Baidu GateWay):  layer-4 load balancing system. 
 
-BGW is similar to the famous open source software LVS, but it is a system developed by Baidu based on DPDK technology.
+  BGW is similar to the famous open source software LVS, but it is a system developed by Baidu based on DPDK technology.
 
 + BFE: layer-7 load balancing system. Provide application layer load balancing service.
 
-As a sub function of BFE, GSLB provides intranet traffic scheduling with cluster granularity across data centers.
+  As a sub function of BFE, GSLB provides intranet traffic scheduling with cluster granularity across data centers.
