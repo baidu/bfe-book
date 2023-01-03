@@ -121,7 +121,7 @@ From the perspective of data content, the following three aspects can be conside
 
 + Status of back-ends of each service
 
- 		As the caller, the network front-end can find the exceptions of the back-end service in terms of latency, error rate, etc
+As the caller, the network front-end can find the exceptions of the back-end service in terms of latency, error rate, etc
 
 + Status of external network
 
