@@ -20,7 +20,7 @@ By the end of 2013, we had the idea of refactoring the forwarding engine. The ma
 
 + The configuration is difficult to maintain
 
-  Transmit's forwarding configuration is mainly described by regular expressions. In practice, we found that regular expressions have problems in maintanence.
+  Transmit's forwarding configuration is mainly described by regular expressions. In practice, we found that regular expressions have problems in maintenance.
 
 At the beginning of 2014, it was determined to refactor the BFE forwarding engine based on Go language. In April 2014, we began to write code. The project was completed at the end of 2014, and the Go version of the forwarding engine was launched in full at Baidu in early 2015.
 
