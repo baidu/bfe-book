@@ -48,7 +48,7 @@ To solve the above problems, "**Passive Health Check**" can be used, which is br
 
 The state change of RS and the start and stop of detection in the passive health check can be described by the following finite state machine.
 
-![fsm of passive health check](./fsm_passive_check.png)
+![fsm of passive health check](./fsm_passive_check2.png)
 
 ### Combination of Active and Passive Health Check
 
