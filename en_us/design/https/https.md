@@ -129,20 +129,20 @@ Google engineers found that 70% of all serious security vulnerabilities in Chrom
 Benefiting from the built-in memory security feature of Go language, BFE can avoid the security problems caused by common C language buffer overflow memory problems.
 
 
-### Security Levels of TLS
+### Security Grade of TLS
 
-The correct configuration of various TLS/SSL parameters (protocol version, encryption suite) of the service requires the operation and maintenance personnel to have a deeper understanding of TLS/SSL security. In order to reduce the security risk of deployment caused by administrator misconfiguration, BFE provides four security levels for TLS, as follows. The TLS protocol version and encryption suite supported by BFE are different under different security levels.
+The correct configuration of various TLS/SSL parameters (protocol version, encryption suite) of the service requires the operation and maintenance personnel to have a deeper understanding of TLS/SSL security. In order to reduce the security risk of deployment caused by administrator misconfiguration, BFE provides four security grades for TLS, as follows. The TLS protocol version and encryption suite supported by BFE are different under different security grades.
 
-| Security Level | Description                               |
+| Security Grade | Description                               |
 | -------------- | ----------------------------------------- |
 | A+             | Highest security and lowest compatibility |
 | A              | High security and moderate compatibility  |
 | B              | Moderate security and high compatibility  |
 | C              | Lowest security and highest compatibility |
 
-Accordingly, different security levels have different security and compatibility, and are applicable to different business scenarios. For example, security level A+ only supports TLS 1.2 and above and encryption suites with higher security strength. Level A+ is applicable to business scenarios requiring PCI DSS level security compliance, such as financial payment business.
+Accordingly, different security grades have different security and compatibility, and are applicable to different business scenarios. For example, security grade A+ only supports TLS 1.2 and above and encryption suites with higher security strength. Grade A+ is applicable to business scenarios requiring PCI DSS level security compliance, such as financial payment business.
 
-For the detailed definition of protocols and encryption suites of each security level, see the description in "[Configure HTTPS Service](../../operation/configuration/https. md)".
+For the detailed definition of protocols and encryption suites of each security grade, see the description in "[Configure HTTPS Service](../../operation/configuration/https. md)".
 
 ### Secure Storage of Keys
 
