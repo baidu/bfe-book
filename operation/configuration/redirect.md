@@ -22,7 +22,7 @@ $ cat mod_redirect.conf
 DataPath = mod_redirect/redirect.data
 ```
 
-rewrite.data 包含重定向规则，可动态加载。安装包中的示例中的配置文件如下：
+redirect.data 包含重定向规则，可动态加载。安装包中的示例中的配置文件如下：
 
 ```
 {
