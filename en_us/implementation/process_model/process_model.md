@@ -2,35 +2,34 @@
 
 The BFE system is composed of a group of collaborative processes (see [Introduction to BFE](../../background/what-is-bfe.md) for details). Here we will focus on the most core forwarding process.
 
-## Classification of Coroutines
+## Classification of Goroutines
 
-The forwarding process of BFE is a highly concurrent network server written in Go language and implemented based on Go routine. The forwarding process of BFE includes several important coroutines:
+The forwarding process of BFE is a highly concurrent network server written in Go language and implemented based on Goroutine. The forwarding process of BFE includes several important Goroutines:
 
-- **Network related coroutines**
+- **Network related Goroutines**
 
-  - Coroutines for listening user connections, coroutines for processing  user connections, and coroutines  for processing protocols.
+  - Goroutines for listening user connections, Goroutines for processing  user connections, and Goroutines  for processing protocols.
 
-  - Coroutines for establishing connection with backends, coroutines for processing read and write with backend connections.
+  - Goroutines for establishing connection with backends, Goroutines for processing read and write with backend connections.
 
-- **Management related coroutines**
+- **Management related Goroutines**
+  - Goroutines for checking backend health status.
+  
+  - Goroutines for monitoring and doing configuration hot load.
+  
+- **Auxiliary Goroutines**
 
-  - Coroutines for checking backend health status.
-
-  - Coroutines for monitoring and doing configuration hot load.
-
-- **Auxiliary coroutines**
-
-  - The extension module can also create coroutines for periodic operation or asynchronous execution processing in background.
+  - The extension module can also create Goroutines for periodic operation or asynchronous execution processing in background.
 
   - For example: periodical log cutting, asynchronous cache update, etc.
 
 ## Concurrency Model
 
-The BFE forwarding instance can start one or more listening coroutines.  If a large number of user accesses are short connections, a single coroutine for listening only uses a single CPU core and may become a bottleneck. At this time, the throughput can be improved by properly adjusting the number of listening coroutines.
+The BFE forwarding instance can start one or more listening Goroutines.  If a large number of user accesses are short connections, a single Goroutine for listening only uses a single CPU core and may become a bottleneck. At this time, the throughput can be improved by properly adjusting the number of listening Goroutines.
 
-Each new user connection will be processed concurrently in an independent coroutine for user connection processing. For the HTTP/HTTPS protocol, the coroutines for user connection processing serially read requests and process them; For HTTP2/SPDY protocol, because the protocol supports multiplexing, requests are processed in multiple independent coroutines for stream processing simultaneously.
+Each new user connection will be processed concurrently in an independent Goroutine for user connection processing. For the HTTP/HTTPS protocol, the Goroutines for user connection processing serially read requests and process them; For HTTP2/SPDY protocol, because the protocol supports multiplexing, requests are processed in multiple independent Goroutines for stream processing simultaneously.
 
-When forwarding the request to the backend and reading the response, it involves a group of coroutines for backend connection read and write, which are responsible for writing the request data to the backend connection and reading the response data from the backend connection.
+When forwarding the request to the backend and reading the response, it involves a group of Goroutines for backend connection read and write, which are responsible for writing the request data to the backend connection and reading the response data from the backend connection.
 
 
 
@@ -40,7 +39,7 @@ When forwarding the request to the backend and reading the response, it involves
 
 ## Concurrency Capability
 
-With coroutines, BFE can make full use of the multi-core CPU of a single machine to improve concurrency and throughput. However, the concurrency model based on the Go routines also has limitations:
+With Goroutines, BFE can make full use of the multi-core CPU of a single machine to improve concurrency and throughput. However, the concurrency model based on the Go routines also has limitations:
 
 - Concurrency does not continue to grow linearly with the increase of CPU cores
 
@@ -53,7 +52,7 @@ With coroutines, BFE can make full use of the multi-core CPU of a single machine
 
 Due to the complexity of the forwarding process and the characteristics of rapid iterative development, potential PANIC problems are difficult to be completely discovered through offline testing. However, when PANIC is triggered in some cases, it will have a very serious impact on the stability of the forwarding cluster, for example, triggered by a specific type of request (Query of Death).
 
-Therefore, all network related coroutines of BFE use the built-in PANIC recovery mechanism of Go language to avoid large-scale PANIC exit of BFE forwarding instances due to unknown bugs during connection/request processing.
+Therefore, all network related Goroutines of BFE use the built-in PANIC recovery mechanism of Go language to avoid large-scale PANIC exit of BFE forwarding instances due to unknown bugs during connection/request processing.
 
 ```go
 // bfe_server/http_conn.go:serve()
