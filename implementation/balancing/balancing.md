@@ -113,7 +113,7 @@ return nil, err.News("subcluster balancing failure")
 ## 分布式负载均衡
 
 BFE在后端子集群的多个实例之间，支持多种负载均衡策略，包括:
-- WRR: 加权轮训策略
+- WRR: 加权轮询策略
 - WLC: 加权最小连接数策略
 
 算法实现详见 bfe_balance/bal_slb/bal_rr.go:Balance()。下文仅以WRR算法为例结合示例场景重点介绍。
