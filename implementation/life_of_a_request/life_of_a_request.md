@@ -86,7 +86,7 @@ BFE的连接对象bfe_server.conn 执行serveRequest函数处理请求。虽然H
 
 - 步骤1. **回调点处理**
 
-  执行HandleBeforeLoation回调点的回调链函数
+  执行HandleBeforeLocation回调点的回调链函数
 
 ```go
 // bfe_server/reverseproxy.go

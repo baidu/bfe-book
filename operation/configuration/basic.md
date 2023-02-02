@@ -5,7 +5,7 @@
 
 ## 场景说明
 
-对于负载均衡，基本能力就是将从客户端的请求，转发到一组后端服务示例上去。BFE的概念中，相同功能的后端服务定义为一个集群。
+对于负载均衡，基本能力就是将从客户端的请求，转发到一组后端服务实例上去。BFE的概念中，相同功能的后端服务定义为一个集群。
 
 下面我们通过一个简单的例子，展示如何配置BFE转发到后端集群上。
 
@@ -149,8 +149,8 @@ cluster_conf.data中的配置项较多，各个项的具体描述如下：
 
 | 配置项            | 描述                           |
 | --------------------- | ----------------------- |
-| BackendConf.TimeoutConnSrv        | Integer<br>连接后端的超时时间，单位是毫秒<br>默认值2 |
-| BackendConf.TimeoutResponseHeader | Integer<br>从后端读响应头的超时时间，单位是毫秒<br>默认值60 |
+| BackendConf.TimeoutConnSrv        | Integer<br>连接后端的超时时间，单位是毫秒<br>默认值2000 |
+| BackendConf.TimeoutResponseHeader | Integer<br>从后端读响应头的超时时间，单位是毫秒<br>默认值60000 |
 | BackendConf.MaxIdleConnsPerHost   | Integer<br>BFE实例与每个后端的最大空闲长连接数<br>默认值2 |
 | BackendConf.MaxConnsPerHost   | Integer<br>BFE实例与每个后端的最大长连接数，0代表无限制<br>默认值0 |
 | BackendConf.RetryLevel            | Integer<br>请求重试级别。0：连接后端失败时，进行重试；1：连接后端失败、转发GET请求失败时均进行重试<br>默认值0 |
@@ -167,7 +167,7 @@ cluster_conf.data中的配置项较多，各个项的具体描述如下：
 | CheckConf.FailNum       | Integer<br>健康检查启动阈值（转发请求连续失败FailNum次后，将后端实例置为不可用状态，并启动健康检查）<br>默认值5 |
 | CheckConf.SuccNum       | Integer<br>健康检查成功阈值（健康检查连续成功SuccNum次后，将后端实例置为可用状态）<br>默认值1 |
 | CheckConf.CheckTimeout  | Integer<br>健康检查的超时时间，单位是毫秒<br>默认值0（无超时）|
-| CheckConf.CheckInterval | Integer<br>健康检查的间隔时间，单位是毫秒<br>默认值1 |
+| CheckConf.CheckInterval | Integer<br>健康检查的间隔时间，单位是毫秒<br>默认值1000 |
 
 <br>
 
@@ -240,7 +240,7 @@ cluster_conf.data中的配置项较多，各个项的具体描述如下：
 
 
 ## 服务访问验证
-在客户端使用curl命令，访问bfe的地址和端口，可以看到看到请求被转发到后端服务器实例。
+在客户端使用curl命令，访问bfe的地址和端口，可以看到请求被转发到后端服务器实例。
 
     > 注意：curl命令需要通过参数 -H “Host: example.org”, 指定请求的header中的Host字段，否则会收到500错误。 
 
