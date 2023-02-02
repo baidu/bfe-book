@@ -1,85 +1,78 @@
-# 深入理解BFE
-本书围绕BFE开源项目，向读者介绍网络接入的相关技术原理，说明BFE开源软件的设计思想，及如何基于BFE开源软件搭建网络接入平台。具有开发能力的读者也可根据本书的说明，按照自己的需要开发BFE的扩展模块，或者向BFE开源项目贡献代码。
+# In-depth Understanding of BFE
+English | [中文](./README-CN.md)
 
-本书已经由电子工业出版社正式出版，书名为《[万亿级流量转发 - BFE核心技术与实现](https://segmentfault.com/a/1190000040400268)》。
-![book](./book.png)
-
-可通过扫描下方的二维码优惠购买。
-
-![code](./new_code.png)
+This book focuses on BFE open source project, introduces the relevant technical principles of network access, explains the design idea of BFE open source software, and how to build a network front-end platform based on BFE open source software. Readers with development capabilities can also develop BFE extension modules according to their own needs or contribute code to BFE open source projects according to the instructions in this book.
 
 
-## BFE开源项目
+## BFE Open Source Project
 
-BFE是百度统一的七层负载均衡接入转发平台。BFE平台从2012年开始建设，截至2020年底，BFE平台每日转发的请求超过万亿，日峰值请求超过1000万QPS，在业界有巨大影响力。2019年7月，BFE的转发引擎对外开源，并于2020年6月被CNCF（云原生计算基金会）接受为“沙盒项目”（Sandbox Project），这是网络方向中国首个被CNCF接受的开源项目。
+BFE is Baidu's unified layer-7 load balancing platform. The BFE platform has been under construction since 2012. By the end of 2020, the BFE platform has forwarded more than trillions of requests per day, with a daily peak of more than 10 million QPS, which has great influence in the industry. In July 2019, BFE's forwarding engine was open-sourced, and was accepted by CNCF (Cloud Native Computing Foundation) as the "Sandbox Project" in June 2020.
 
-BFE开源项目地址: https://github.com/bfenetworks/bfe
+Address of BFE open source project: https://github.com/bfenetworks/bfe
 
-## 本书作者
+## Authors
 
-| 姓名   | Github ID                                           |
-| ------ | --------------------------------------------------- |
-| 章淼   | [mileszhang2016](https://github.com/mileszhang2016) |
-| 杨思杰 | [iyangsj](https://github.com/iyangsj)               |
-| 戴明   | [daimg](https://github.com/daimg)                   |
-| 陶春华 | [ohscartao](https://github.com/ohscartao)           |
+| 姓名        | Github ID                                           |
+| ----------- | --------------------------------------------------- |
+| Miles Zhang | [mileszhang2016](https://github.com/mileszhang2016) |
+| Sijie Yang  | [iyangsj](https://github.com/iyangsj)               |
+| Ming Dai    | [daimg](https://github.com/daimg)                   |
+| Chunhua Tao | [ohscartao](https://github.com/ohscartao)           |
 
-## 版权许可
+## Copyright Statement
 
-本书采用[署名-非商业性使用-相同方式共享 4.0（CC BY-NC-SA 4.0）](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)许可，发行版权归属于电子工业出版社博文视点，未经授权请勿转载、印刷和发行。
+This book adopts [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/) Permission. The distribution copyright belongs to [Publishing House of Electronics Industry](https://www.phei.com.cn/). Do not reprint, print and distribute without authorization.
 
-本书著作权归属于BFE开源社区，本书作者对其所编写的内容保留署名权，稿酬将用于BFE开源社区建设。
+The copyright of this book belongs to the BFE open source community. The author of this book reserves the right of authorship for the content he wrote, and the remuneration will be used for the construction of the BFE open source community.
 
+# Table of contents
 
+## Background
 
-# 全书目录
++ [Chap1 Introduction to BFE](./en_us/background/what-is-bfe.md)
 
-## 背景篇
+## Principles
++ [Chap2 Introduction to Network Front End](./en_us/frontend_principle/introduction/introduction.md)
++ [Chap3 Trend of Network Front End Technology](./en_us/frontend_principle/trend/trend.md)
++ [Chap4 Introduction to Network Load Balancing Technology](./en_us/frontend_principle/load_balance/load_balance.md)
 
-+ [第一章 BFE简介](./background/what-is-bfe.md)
+## Designs
++ [Chap5 Design Considerations of BFE](./en_us/design/ideas/ideas.md)
++ [Chap6 Comparison to Similar Systems](./en_us/design/comparison/comparison.md)
++ [Chap7 Forwarding Model of BFE](./en_us/design/model/model.md)
++ [Chap8 Traffic Routing](./en_us/design/route/route.md)
++ [Chap9 Traffic Scheduling](./en_us/design/gslb/gslb.md)
++ [Chap10 Plugin Architecture](./en_us/design/module/module.md)
++ [Chap11 Health Check](./en_us/design/health_check/health_check.md)
++ [Chap12 Traffic Limiting](./en_us/design/limit/limit.md)
++ [Chap13 Status Monitoring](./en_us/design/monitor/monitor.md)
++ [Chap14 Logging Mechanism](./en_us/design/log/log.md)
++ [Chap15 Timeout Setting](./en_us/design/timeout/timeout.md)
++ [Chap16 Configuration Management](./en_us/design/configuration/configuration.md)
++ [Chap17 HTTPS Optimization](./en_us/design/https/https.md)
++ [Chap18 Information Passthrough](./en_us/design/info_pass_through/pass_through.md)
 
-## 原理篇
-+ [第二章 网络前端接入技术简介](./frontend_principle/introduction/introduction.md)
-+ [第三章 网络前端接入技术的发展趋势](./frontend_principle/trend/trend.md)
-+ [第四章 网络负载均衡技术简介](./frontend_principle/load_balance/load_balance.md)
+## Operations
++ [Chap19 Installation And Deployment of BFE Service](./en_us/operation/installation/installation.md)
++ [Chap20 Basic Configuration of BFE Service](./en_us/operation/config_basic/basic.md)
++ [Chap21 Configure Load Balancing Algorithm And Session Stickiness](./en_us/operation/config_scheduling/config_scheduling.md)
++ [Chap22 Configure HTTPS Service](./en_us/operation/config_https/config_https.md)
++ [Chap23 Configure Rewrite](./en_us/operation/config_rewrite/config_rewrite.md)
++ [Chap24 Configure Redirect](./en_us/operation/config_redirect/config_redirect.md)
++ [Chap25 Configure Traffic Limiting](./en_us/operation/config_traffic_limit/config_traffic_limit.md)
++ [Chap26 Support More Protocols](./en_us/operation/config_protocols/config_protocols.md)
 
-## 设计篇
-+ [第五章 BFE的设计思想](./design/ideas/ideas.md)
-+ [第六章 BFE和相关开源项目的对比](./design/comparison/comparison.md)
-+ [第七章 BFE的转发模型](./design/model/model.md)
-+ [第八章 BFE的路由转发机制](./design/route/route.md)
-+ [第九章 BFE的内网流量调度机制](./design/gslb/gslb.md)
-+ [第十章 BFE的模块插件机制](./design/module/module.md)
-+ [第十一章 健康检查机制](./design/health_check/health_check.md)
-+ [第十二章 限流机制](./design/limit/limit.md)
-+ [第十三章 监控机制](./design/monitor/monitor.md)
-+ [第十四章 日志机制](./design/log/log.md)
-+ [第十五章 超时设置](./design/timeout/timeout.md)
-+ [第十六章 配置管理](./design/configuration/configuration.md)
-+ [第十七章 HTTPS优化机制](design/https/https.md)
-+ [第十八章 信息的透传](./design/info_pass_through/pass_through.md)
+## Implementations
++ [Chap27 Layout of BFE Code Base](./en_us/implementation/source_layout/source_layout.md)
++ [Chap28 Process Model](./en_us/implementation/process_model/process_model.md)
++ [Chap29 Processing of Connections and Requests](./en_us/implementation/life_of_a_request/life_of_a_request.md)
++ [Chap30 Module Framework](./en_us/implementation/module_framework/module_framework.md)
++ [Chap31 Request Routing](./en_us/implementation/routing/routing.md)
++ [Chap32 Load Balancing](./en_us/implementation/balancing/balancing.md)
++ [Chap33 Implementation of Core Protocols](./en_us/implementation/protocol/protocol.md)
 
-## 操作篇
-+ [第十九章 BFE服务的安装部署](./operation/installation/installation.md)
-+ [第二十章 BFE服务的基础配置](./operation/configuration/basic.md)
-+ [第二十一章 配置负载均衡算法及会话保持](./operation/configuration/proxy.md)
-+ [第二十二章 配置HTTPS服务](./operation/configuration/https.md)
-+ [第二十三章 配置rewrite](./operation/configuration/rewrite.md)
-+ [第二十四章 配置redirect](./operation/configuration/redirect.md)
-+ [第二十五章 配置限流](./operation/configuration/prison.md)
-+ [第二十六章 支持更多协议](./operation/configuration/protocol.md)
+## Development
++ [Chap 34 How to Develop BFE Extension Module](./en_us/develop/how_to_write_module/how_to_write_module.md)
 
-## 实现篇
-+ [第二十七章 BFE的代码组织](implementation/source_layout/source_layout.md)
-+ [第二十八章 进程模型](implementation/process_model/process_model.md)
-+ [第二十九章 请求处理流程及响应](implementation/life_of_a_request/life_of_a_request.md)
-+ [第三十章 模块框架](implementation/model_framework/model_framework.md)
-+ [第三十一章 请求路由](implementation/routing/routing.md)
-+ [第三十二章 负载均衡](implementation/balancing/balancing.md)
-+ [第三十三章 核心协议实现](implementation/protocol/protocol.md)
-
-## 开发篇
-+ [第三十四章 如何开发BFE扩展模块](./develop/how_to_write_module/how_to_write_module.md)
-
-## 附录篇
-+ [附1 BFE的多进程GC机制](./appendix/multi_process_gc/multi_process_gc.md)
+## Appendix
++ [Appendix1 Multi-process GC mechanism of BFE](./en_us/appendix/multi_process_gc/multi_process_gc.md)
