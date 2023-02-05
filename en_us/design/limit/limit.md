@@ -42,7 +42,7 @@ In the scenario of using software load balancer, forwarding is often completed b
 
 In practice, it is found that the final traffic is often smaller than the preset overall threshold. The reasons for this are:
 
-+ As the the upstream of BFE,  layer-4 load balancer is used to distribute traffic among multiple BFE instances.
++ As the upstream of BFE,  layer-4 load balancer is used to distribute traffic among multiple BFE instances.
 
 + The effects of layer-4 load balancer are: for a Virtual Server, the new connections are evenly distributed to multiple BFE instances according to the Round Robin mode 
 

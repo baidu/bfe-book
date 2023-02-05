@@ -1,6 +1,6 @@
 # Comparison to Similar Systems
 
-Here comparison will be made between BFE and several similar system.
+Here comparison will be made between BFE and several similar systems.
 
 NOTE: Most of the projects below are under active development. Thus some of the information may become out of date.
 
@@ -65,7 +65,7 @@ Due to difference in language, cost for new features is lower for BFE and Traefi
 
 ### Resilience to Exception
 
-With recovery mechanism of Go, Panic can be caught in BFE and Traefik. Both system are immune to sudden crash.
+With recovery mechanism of Go, Panic can be caught in BFE and Traefik. Both systems are immune to sudden crash.
 
 While Nginx and Envoy can do nothing with wrong memory usage. Debugging such a bug is very time-consuming.
 
@@ -76,7 +76,7 @@ While Nginx and Envoy can do nothing with wrong memory usage. Debugging such a b
 + BFE provides [rich internal status](https://www.bfe-networks.net/en_us/operation/monitor/) for external observation.
 
 - Nginx and Traefik provide less internal status.
-- Envoy also provides quite a lot internal status.
+- Envoy also provides quite a lot of internal status.
 
 ### Hot-reload of Configuration
 

@@ -48,7 +48,7 @@ Compared with the previous generation of Internet scheduling system, GTC has the
 
 Many similar systems in the industry adopt the "plan" mechanism. For example, for a domain name, there are two alternative IP addresses, A and B. The plan of this domain name will be as follows: If A has a problem, switch the traffic to B; If B has a problem, switch the traffic to A. For each domain name directly assigned with IP addresses (that is, the domain name has A record), such a plan needs to be prepared.
 
-The biggest problem of the plan mechanism is the high maintenance cost. First of all, the maintenance cost has an exponential relationship with the number of network entrances. The situation of two network entrances is very simple; If there are 5 or even 10 network entrances, the plan is very difficult to prepared, and various possibilities need to be considered. In addition, the maintenance cost is linear with the number of domain names. If there are thousands of domain names, then if you want to make an adjustment to the network entrances (add or delete a network entrances), the amount of work required is amazing.
+The biggest problem of the plan mechanism is the high maintenance cost. First of all, the maintenance cost has an exponential relationship with the number of network entrances. The situation of two network entrances is very simple; If there are 5 or even 10 network entrances, the plan is very difficult to prepare, and various possibilities need to be considered. In addition, the maintenance cost is linear with the number of domain names. If there are thousands of domain names, then if you want to make an adjustment to the network entrances (add or delete a network entrances), the amount of work required is amazing.
 
 Internet traffic scheduling is mainly applicable to the following scenarios:
 
@@ -163,7 +163,7 @@ After the forwarding fails, BFE will first do In-Sub-Cluster Retry (if the **Ret
 
 Be careful when enabling the Cross-Sub-Cluster Retry function. In some scenarios, this function may transfer excessive traffic to other healthy sub-clusters, resulting in excessive pressure on these sub-clusters, or even collapse of sub-clusters. Unlike the mechanism of forwarding traffic to each sub-cluster according to the weight in the "intranet traffic scheduling" above, the traffic caused by Cross-Sub-Cluster Retry is uncontrollable.
 
-BFE does not do retry in all failure scenarios. If BFE senses that the downstream backend instance has read the request (even if the read operation is no complete), it will not retry again. In this case, BFE cannot confirm whether the downstream backend instance has processed the request. If it sends the request again, it may cause the status error, so it adopts a conservative strategy.
+BFE does not retry in all failure scenarios. If BFE senses that the downstream backend instance has read the request (even if the read operation is not complete), it will not retry again. In this case, BFE cannot confirm whether the downstream backend instance has processed the request. If it sends the request again, it may cause the status error, so it adopts a conservative strategy.
 
 ### Connection Pool
 

@@ -40,7 +40,7 @@ For each configuration file, independent loading logic should be written.
 
 Configuration files are verified whenever they are loaded, regardless of static or dynamic configuration.
 
-- BFE fails to start if the configuration files fails to be loaded.
+- BFE fails to start if the configuration files fail to be loaded.
 - BFE will continue to run if dynamic configuration fails to be hot-reloaded.
 
 ### Hot-reload of Dynamic Configuration

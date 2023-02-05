@@ -2,7 +2,7 @@
 
 The tenant's backend  **cluster** usually contains multiple sub-clusters, and **sub-cluster**s are deployed in different data centers in different regions. Each sub-cluster contains a set of backend **instance**s with different processing capabilities.
 
-It is usual to uses multiple backend sub-clusters to manage backend services, which can bring the following benefits:
+It is usual to use multiple backend sub-clusters to manage backend services, which can bring the following benefits:
 
 1. Multiple sub-clusters belong to different fault isolation domains. If a sub-cluster fails (for example, the Canary Release goes online abnormally), it can quickly switch traffic to stop loss and improve overall availability
 

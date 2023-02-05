@@ -2,7 +2,7 @@
 
 ## Introduction
 
-BFE supports plugin architecture that make it possible to develop new features rapidly by writing plugins (i.e. modules).
+BFE supports plugin architecture that makes it possible to develop new features rapidly by writing plugins (i.e. modules).
 
 With the BFE plugin architecture:
 

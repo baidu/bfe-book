@@ -6,7 +6,7 @@ BFE was originally the abbreviation of Baidu Front End, and it is Baidu's unifie
 
 In 2014, the core forwarding engine of BFE platform was reconstructed based on Go language, and was fully launched in Baidu in January 2015. In China, BFE is an early project to use Go language for load balancing scenarios and large-scale scenarios.
 
-At the beginning of 2019, BFE platform successfully supported the Red Envelope Project of Spring Festival Gala sponsored by Baidu. In this project, BFE platform provided forwarding capability of more than 100 million QPS , supportting HTTPS unloading, precise traffic limiting and other key capabilities under massive traffic, and ensured the smooth progress of activities.
+At the beginning of 2019, BFE platform successfully supported the Red Envelope Project of Spring Festival Gala sponsored by Baidu. In this project, BFE platform provided forwarding capability of more than 100 million QPS , supporting HTTPS offloading, precise traffic limiting and other key capabilities under massive traffic, and ensured the smooth progress of activities.
 
 In July 2019, BFE's forwarding engine was open to public as an open source project. The name of open source project remained as BFE, but it was renamed to Beyond Front End. It was hoped that the open source project of BFE can promote the development of load balancing technology.
 
@@ -32,7 +32,7 @@ This solution has the following problems:
 
 (2) High operation and maintenance costs
 
-In some scenarios, it is necessary to apply the same security policy for multiple services at the same time. In the absence of a unified layer-7 load balancer layer, the security policy need to be applied in multiple service clusters repeatedly. This not only brings a lot of operation costs, but also makes the launch time of security strategy very long.
+In some scenarios, it is necessary to apply the same security policy for multiple services at the same time. In the absence of a unified layer-7 load balancer layer, the security policy needs to be applied in multiple service clusters repeatedly. This not only brings a lot of operation costs, but also makes the launch time of security strategy very long.
 
 (3) Low capability of unified traffic control 
 
@@ -50,7 +50,7 @@ After the introduction of BFE platform, all traffic will be forwarded by BFE bef
 
 (2) Unified operation and maintenance
 
-​	For the security policies that need to be widely used by multiple services, you only need to make modification on BFE platform.
+​	For the security policies that need to be widely used by multiple services, you only need to make modifications on BFE platform.
 
 (3) Enhanced traffic control
 
@@ -74,7 +74,7 @@ The BFE platform can process the traffic of HTTP, HTTPS, HTTP/2, QUIC and other 
 
 BFE platform includes a two-layer traffic scheduling system consisting of internal network traffic scheduling and external network traffic scheduling.
 
-(3)  Security and anti attack
+(3)  Security and anti-attack
 
 The BFE platform supports a variety of security capabilities, including blacklist blocking, high-capacity traffic limiting, WAF (Web Application Firewall), etc.
 
@@ -86,7 +86,7 @@ The BFE platform can generate real-time data reports based on the access logs, r
 
 ### Modules of BFE Platform
 
-BFE platform is a complex distributed system composed of many modules, which can be divided into data platform, control platform, and some related  modules.
+BFE platform is a complex distributed system composed of many modules, which can be divided into data platform, control platform, and some related modules.
 
 The main modules of the data plane include:
 

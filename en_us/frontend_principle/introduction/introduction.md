@@ -75,7 +75,7 @@ As a large Internet enterprise, Baidu has a complex scene of multiple regions an
 
 + GTC (Global Traffic Control): Internet traffic dispatching system. It is used to schedule external network traffic between network entrances.
 
-  In terms of network traffic scheduling, there are two possible technical solutions: DNS, or BGP routing. Because of bandwidth charges and other reasons, the IP addresses provided by operators is widely used in China, rather than IP addresses provided by website service providers. Therefore, GTC takes effect mainly based on DNS.
+  In terms of network traffic scheduling, there are two possible technical solutions: DNS, or BGP routing. Because of bandwidth charges and other reasons, the IP addresses provided by operators are widely used in China, rather than IP addresses provided by website service providers. Therefore, GTC takes effect mainly based on DNS.
 
 + HTTPDNS: mobile domain name resolution. It is used to provide domain name resolution service for mobile apps.
 
