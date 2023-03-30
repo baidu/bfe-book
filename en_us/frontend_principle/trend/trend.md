@@ -39,7 +39,7 @@ It must be noted that the application of HTTPS is definitely not as simple as "e
 
 For these challenges, we need to adopt some measures in technology and mechanism to solve them.
 
-## Increased Technical Threshold of Nework Protocol
+## Increased Technical Threshold of Network Protocol
 
 About 20 years ago, building a website might be relatively simple. HTTP was the mainstream network protocol. A technician who may not know much about the network can download an Apache software (later Nginx), install and run it according to some simple instructions.
 
@@ -53,7 +53,7 @@ The mobility of network access has an important impact on the network front-end 
 
 + Rapid upgrade of transmission protocol
 
-  Many important assumptions contained in the design of the TCP protocol (which is most commonly used by the Internet) are based on wired networks. For example, packet loss is mainly due to congestion in the network, so packet loss can be used as a signal of congestion; The end-to-end delay and bandwidth are relatively stable for a certain period of time. The loss is detected through the timeout mechanism. In the wireless Internet scenario, many of the above assumptions have been broken. Because of the characteristics of wireless links, many packets are lost not due to congestion; End to end latency and bandwidth are also unstable. This change has led to the upgrading of Internet protocols.
+  Many important assumptions contained in the design of the TCP protocol (which is most commonly used by the Internet) are based on wired networks. For example, packet loss is mainly due to congestion in the network, so packet loss can be used as a signal of congestion; The end-to-end delay and bandwidth are relatively stable for a certain period of time. The loss is detected through the timeout mechanism. In the wireless Internet scenario, many of the above assumptions have been broken. Because of the characteristics of wireless links, many packets are lost not due to congestion; End-to-end latency and bandwidth are also unstable. This change has led to the upgrading of Internet protocols.
 
 + Customization of transmission protocol
 

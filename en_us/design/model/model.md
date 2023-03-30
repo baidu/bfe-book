@@ -10,11 +10,11 @@ In BFE, there are the following basic concepts:
 
   The services forwarded by BFE can be distinguished by "tenants". The configuration in the BFE engine, such as forwarding policy and the configuration of each plugins, is distinguished by tenants.
 
-  Tenant can also called "product" in BFE.
+  Tenant can also be called "product" in BFE.
 
 + Cluster
 
-  A Cluster means a set of backend servers which provide the same functionality. Multiple clusters can be defined within a product. In some scenarios, clusters can also called services.
+  A Cluster means a set of backend servers which provide the same functionality. Multiple clusters can be defined within a product. In some scenarios, clusters can also be called services.
 
   In one tenant, the forwarding table can be used to forward the traffic to the appropriate cluster. For detailed mechanism, please refer to the description of BFE routing mechanism in the following chapter.
 

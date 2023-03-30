@@ -172,7 +172,7 @@ s.ConActive.Dec(1)
 The "absolute values" of all variables can be obtained by calling the GetAll() function of Metrics; Call the GetDiff() function to obtain the "change value" of the Counter type within 20 seconds.
 
 ```
-// get absoulute data for all metrics
+// get absolute data for all metrics
 stateData := m.GetAll()
 // get diff data for all counters
 stateDiff := m.GetDiff()

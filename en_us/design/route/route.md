@@ -12,7 +12,7 @@ A Forwarding Table is composed of two parts:
 - **Basic Rule Table**, consists of "Basic Rules". BFE searches "host" and/or "path" conditions to match a Basic Rule.
 - **Advanced Rule Table**, consists of "Advanced Rules". It's searched in listed order (from up to down). Various request contents (including host, path, header, cookie, method, etc) can be used in search to match conditions in advanced rules. A Default Rule should be configured in Advanced Rule Table, as the last resort.
 
-Basic Rule Table uses tree search and can be searched fast, even with large amount (thousands, for example) of rules configured. Advanced Rule Table has more powerful condition description capability, but its search performance may degrades when number of rules is large ( >100 rules, for example).
+Basic Rule Table uses tree search and can be searched fast, even with large amount (thousands, for example) of rules configured. Advanced Rule Table has more powerful condition description capability, but its search performance may degrade when number of rules is large ( >100 rules, for example).
 
 BFE search in the forwarding table in the following steps:
 
@@ -21,7 +21,7 @@ BFE search in the forwarding table in the following steps:
 
 ![route flow chart](./route-flow-chart.png)
 
-The following figure shows an example of forwarding table. In this example, there are five service clusters: Demo-A, Demo-B, Demo-C, Demo-D, Demo-E. Demo-E is the destination cluster for the default rule. The traffic is distinguished to Demo-A to Demo-D in the basic rule table.  For Demo-D, there is one cluster Demo-D1 for canary release.  Traffic for Demo-D is distinguished in advanced rule table further.
+The following figure shows an example of forwarding table. In this example, there are five service clusters: Demo-A, Demo-B, Demo-C, Demo-D, Demo-E. Demo-E is the destination cluster for the default rule. The traffic is distinguished from Demo-A to Demo-D in the basic rule table.  For Demo-D, there is one cluster Demo-D1 for canary release.  Traffic for Demo-D is distinguished in advanced rule table further.
 
 In the advanced table, each forwarding rule includes two parts: condition and destination cluster. Condition Expressions are used to describe the forwarding conditions.
 
@@ -59,7 +59,7 @@ To avoid the problem of regular expression, condition expression is designed whe
 
 #### Condition Primitive
 
-- A condition primitive is a basic and built-in function which check some specified condition matched or not.
+- A condition primitive is a basic and built-in function which checks some specified condition is matched or not.
 
 ``` go
 // return true if the request Host is "www.bfe-networks.com" or "bfe-networks.com"
