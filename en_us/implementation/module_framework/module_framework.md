@@ -215,3 +215,7 @@ if hl != nil {
 }
 ```
 
+
+## links
+Previous: [Chap29 Processing of Connections and Requests](../../../en_us/implementation/life_of_a_request/life_of_a_request.md)  
+Next: [Chap31 Request Routing](../../../en_us/implementation/routing/routing.md)

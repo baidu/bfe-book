@@ -205,3 +205,7 @@ For example, suppose that backend cluster contains three instances a/b/c, with w
 | 5     | 4 -2  5                           | c                 | 9 -1 -1                          |
 | 6     | 9 -1 -1                           | a                 | 7  0  0                          |
 | 7     | 7  0  0                           | a                 | 5  1  1                          |
+
+## links
+Previous: [Chap31 Request Routing](../../../en_us/implementation/routing/routing.md)  
+Next: [Chap33 Implementation of Core Protocols](../../../en_us/implementation/protocol/protocol.md)

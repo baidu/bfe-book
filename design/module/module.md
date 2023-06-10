@@ -67,3 +67,6 @@ BFE转发过程中的回调点如下图所示。
 |            | mod_http_code      | 统计HTTP响应状态码                                           |
 
 可以通过访问BFE实例的 http://localhost:8299/monitor/module_handlers 监控地址，查看到当前运行的BFE实例中所有的回调点、在各回调点注册的模块回调函数列表以及顺序。
+## links
+上一章：[第九章 BFE的内网流量调度机制](../../design/gslb/gslb.md)  
+下一章：[第十一章 健康检查机制](../../design/health_check/health_check.md)

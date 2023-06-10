@@ -208,3 +208,7 @@ CA成为HTTPS网站稳定性风险的一个新的来源。CA厂商的选型是�
 
 HTTPS站点在有条件情况下可以通过签发多个CA厂商的证书实现冗余互备。当某个CA厂商证书访问连通率异常时，可以快速切换迁移至其它CA证书止损。
 
+
+## links
+上一章：[第十六章 配置管理](../../design/configuration/configuration.md)  
+下一章：[第十八章 信息的透传](../../design/info_pass_through/pass_through.md)

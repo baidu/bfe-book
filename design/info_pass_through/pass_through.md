@@ -137,3 +137,7 @@ BFE在扩展模块mod_header中默认提供了捎带客户端IP地址和端口�
 | %client_cert_subject_province            | 客户端证书Subject Province            |                   |
 | %client_cert_subject_country             | 客户端证书Subject Country             |                   |
 | %client_cert_subject_locality            | 客户端证书Subject Locality            |                   |
+
+## links
+上一章：[第十七章 HTTPS优化机制](../../design/https/https.md)  
+下一章：[第十九章 BFE服务的安装部署](../../operation/installation/installation.md)

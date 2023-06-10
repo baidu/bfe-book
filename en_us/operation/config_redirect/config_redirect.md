@@ -117,3 +117,7 @@ Result:
 |Request   | http://www.example.com/index.html |
 |Redirect to   | https://www.example.com/index.html |
 
+
+## links
+Previous: [Chap23 Configure Rewrite](../../../en_us/operation/config_rewrite/config_rewrite.md)  
+Next: [Chap25 Configure Traffic Limiting](../../../en_us/operation/config_traffic_limit/config_traffic_limit.md)

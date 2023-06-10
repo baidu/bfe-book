@@ -90,3 +90,6 @@
 以上这些内容将在后续中的章节中给出详细的说明。
 
 ![dict service refactor](./dict_service.png)
+## links
+上一章：[第四章 网络负载均衡技术简介](../../frontend_principle/load_balance/load_balance.md)  
+下一章：[第六章 BFE和相关开源项目的对比](../../design/comparison/comparison.md)

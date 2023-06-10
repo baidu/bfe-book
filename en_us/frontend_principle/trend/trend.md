@@ -180,3 +180,7 @@ In recent years, great changes have taken place in this regard, as shown in:
 Cloud Native is an important direction of cloud computing.
 
 On the one hand, the network front-end system should support the cloud native of the business, and support the micro service, multi tenant, elastic capacity expansion and other capabilities of the business; In addition, it is also necessary to realize itself as cloud native, which has the characteristics of microservice and elastic capacity expansion.
+
+## links
+Previous: [Chap2 Introduction to Network Front End](../../../en_us/frontend_principle/introduction/introduction.md)  
+Next: [Chap4 Introduction to Network Load Balancing Technology](../../../en_us/frontend_principle/load_balance/load_balance.md)

@@ -178,3 +178,7 @@ CA has become a new source of HTTPS website stability risk. The selection of CA 
 With the large-scale popularization of HTTPS, major failures of HTTPS caused by mainstream CAs are not uncommon in recent years. For example, in 2016, GlobalSign affected many well-known large websites due to OCSP service failure. In 2018, due to the security violation of Verisign, the world's largest CA, browsers such as Chrome/Firefox/Safari stopped trusting the certificates issued by Symantec.
 
 HTTPS sites can achieve redundancy and mutual backup by issuing certificates from multiple CAs if conditions permit. When a CA's certificate access connectivity is abnormal, it can quickly switch and migrate to other CA certificates to stop loss.
+
+## links
+Previous: [Chap16 Configuration Management](../../../en_us/design/configuration/configuration.md)  
+Next: [Chap18 Information Passthrough](../../../en_us/design/info_pass_through/pass_through.md)

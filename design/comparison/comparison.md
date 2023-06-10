@@ -78,3 +78,7 @@
 
 注：Nginx商业版支持动态配置，在不重启进程的情况下热加载配置生效
 
+
+## links
+上一章：[第五章 BFE的设计思想](../../design/ideas/ideas.md)  
+下一章：[第七章 BFE的转发模型](../../design/model/model.md)

@@ -71,3 +71,7 @@
 + BFE：七层负载均衡系统。为流量提供应用层负载均衡服务。
 
   内网流量调度GSLB作为BFE的子功能，提供跨数据中心的集群粒度的流量调度。
+
+## links
+上一章：[第一章 BFE简介](../../background/what-is-bfe.md)  
+下一章：[第三章 网络前端接入技术的发展趋势](../../frontend_principle/trend/trend.md)

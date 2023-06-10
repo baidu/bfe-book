@@ -291,3 +291,7 @@ func (m *BfeMonitor) WebHandlersInit(srv *BfeServer) error {
 ```
 
 The above is the logic of the callback function in BFE main program. There are also independent registration logic for each extension module. Please refer to the description in "[How to develop BFE extension module](../../development/how_to_write_module/how_to_write_module. md)".
+
+## links
+Previous: [Chap12 Traffic Limiting](../../../en_us/design/limit/limit.md)  
+Next: [Chap14 Logging Mechanism](../../../en_us/design/log/log.md)

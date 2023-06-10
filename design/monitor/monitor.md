@@ -274,3 +274,6 @@ func (m *BfeMonitor) WebHandlersInit(srv *BfeServer) error {
 ```
 
 以上是BFE主逻辑注册回调函数的逻辑。在各扩展模块，也有独立的注册逻辑，可以参考"[如何开发BFE扩展模块](../../develop/how_to_write_module/how_to_write_module.md)"中的说明。
+## links
+上一章：[第十二章 限流机制](../../design/limit/limit.md)  
+下一章：[第十四章 日志机制](../../design/log/log.md)

@@ -169,3 +169,6 @@ Under the "multi-process rotation" mechanism, due to the active shutdown of GC i
   - Assume that the memory consumption rate is 20GB per minute from observation
 
   - M = (5 + 20 + 3) \* 20 / 60 = 9.4GB
+
+## links
+Previous: [Chap 34 How to Develop BFE Extension Module](../../../en_us/develop/how_to_write_module/how_to_write_module.md)  

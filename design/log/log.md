@@ -45,3 +45,7 @@ BFE的访问日志由BFE的扩展模块mod_access来输出。BFE的访问日志�
 
 mod_access提供了模板配置能力，用户可以对请求日志和会话日志中输出的数据字段做定制。
 
+
+## links
+上一章：[第十三章 监控机制](../../design/monitor/monitor.md)  
+下一章：[第十五章 超时设置](../../design/timeout/timeout.md)

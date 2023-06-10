@@ -137,3 +137,7 @@ ProductRulePath = mod_prison/prison.data
 * REQ_HEADER_SET
 
 正常转发，在请求header中插入指定key和value。key和value在params中指定。
+
+## links
+上一章：[第二十四章 配置redirect](../../operation/configuration/redirect.md)  
+下一章：[第二十六章 支持更多协议](../../operation/configuration/protocol.md)

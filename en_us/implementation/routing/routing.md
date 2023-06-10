@@ -166,3 +166,7 @@ func (t *HostTable) LookupCluster(req *bfe_basic.Request) error {
 }
 ```
 
+
+## links
+Previous: [Chap30 Module Framework](../../../en_us/implementation/module_framework/module_framework.md)  
+Next: [Chap32 Load Balancing](../../../en_us/implementation/balancing/balancing.md)

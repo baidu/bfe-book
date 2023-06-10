@@ -103,3 +103,7 @@
 
 
 
+
+## links
+上一章：[第三章 网络前端接入技术的发展趋势](../../frontend_principle/trend/trend.md)  
+下一章：[第五章 BFE的设计思想](../../design/ideas/ideas.md)

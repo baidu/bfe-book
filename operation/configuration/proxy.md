@@ -187,3 +187,7 @@ Cookie: UID=12345
 当开启该功能，BFE会使用hash方式，计算得到子集群中的后端实例。这样，相同UID的消息，总能hash得到相同的后端，从而实现了会话保持功能。
 
 这里也会出现同样的问题：如果后端实例列表发生变化，会话会转移到其他实例上。
+
+## links
+上一章：[第二十章 BFE服务的基础配置](../../operation/configuration/basic.md)  
+下一章：[第二十二章 配置HTTPS服务](../../operation/configuration/https.md)

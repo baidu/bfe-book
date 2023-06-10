@@ -137,3 +137,6 @@ BFE平台是由很多模块构成的一个比较复杂的分布式系统，可�
   
 
 
+
+## links
+下一章：[第二章 网络前端接入技术简介](../frontend_principle/introduction/introduction.md)

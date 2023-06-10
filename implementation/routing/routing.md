@@ -158,3 +158,7 @@ func (t *HostTable) LookupCluster(req *bfe_basic.Request) error {
 }
 ```
 
+
+## links
+上一章：[第三十章 模块框架](../../implementation/model_framework/model_framework.md)  
+下一章：[第三十二章 负载均衡](../../implementation/balancing/balancing.md)

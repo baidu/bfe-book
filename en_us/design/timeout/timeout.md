@@ -163,3 +163,7 @@ The timeout of communication between BFE and backend instance includes:
 
 
 
+
+## links
+Previous: [Chap14 Logging Mechanism](../../../en_us/design/log/log.md)  
+Next: [Chap16 Configuration Management](../../../en_us/design/configuration/configuration.md)

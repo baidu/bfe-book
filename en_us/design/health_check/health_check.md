@@ -122,3 +122,7 @@ When the load balancer instance uses the active health check results obtained fr
 ## Health Check of BFE
 
 BFE open source project currently only supports passive health checks. The commercial product implemented based on the BFE open source project includes centralized active health check.
+
+## links
+Previous: [Chap10 Plugin Architecture](../../../en_us/design/module/module.md)  
+Next: [Chap12 Traffic Limiting](../../../en_us/design/limit/limit.md)

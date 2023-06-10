@@ -194,3 +194,7 @@ Session stickiness is supported for the following two levels:
 
 - Sub cluster level: requests of the same session are forwarded to the same sub cluster (may be different instances in this sub cluster).
 - Instance level: requests of the same session are forwarded to the same instance.
+
+## links
+Previous: [Chap8 Traffic Routing](../../../en_us/design/route/route.md)  
+Next: [Chap10 Plugin Architecture](../../../en_us/design/module/module.md)

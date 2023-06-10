@@ -94,3 +94,7 @@ In terms of overload protection capability, there are the following differences 
 + Granularity of taking effect
 
   Based on counters, traffic limiting can be accurate to the granularity of a single request; The effectiveness of intranet traffic scheduling is based on the weight set at BFE, and the control granularity is coarse.
+
+## links
+Previous: [Chap11 Health Check](../../../en_us/design/health_check/health_check.md)  
+Next: [Chap13 Status Monitoring](../../../en_us/design/monitor/monitor.md)

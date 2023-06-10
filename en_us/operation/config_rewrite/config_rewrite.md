@@ -230,3 +230,7 @@ Result:
 |Original value   | http://www.example.com/?name=alice?key1=value2&key2=value2 |
 |After rewrite   | http://www.example.com/?name=alice |
 
+
+## links
+Previous: [Chap22 Configure HTTPS Service](../../../en_us/operation/config_https/config_https.md)  
+Next: [Chap24 Configure Redirect](../../../en_us/operation/config_redirect/config_redirect.md)

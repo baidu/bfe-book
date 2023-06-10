@@ -196,3 +196,7 @@ Modify the configuration and set "SessionSticky" in *conf/server_data_conf/clust
 When this function is enabled, BFE will use the hash method to calculate the back-end instance in the sub-cluster. In this way, requests with the same UID can always be hashed to get the same backend, thus realizing the session persistence function.
 
 The same problem will occur here: if the backend instance list changes, the session will be transferred to other instances.
+
+## links
+Previous: [Chap20 Basic Configuration of BFE Service](../../../en_us/operation/config_basic/basic.md)  
+Next: [Chap22 Configure HTTPS Service](../../../en_us/operation/config_https/config_https.md)

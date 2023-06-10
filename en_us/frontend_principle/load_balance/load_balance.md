@@ -96,3 +96,7 @@ The following figure illustrates the mixed use of the layer-4 load balancing sof
 
 
 
+
+## links
+Previous: [Chap3 Trend of Network Front End Technology](../../../en_us/frontend_principle/trend/trend.md)  
+Next: [Chap5 Design Considerations of BFE](../../../en_us/design/ideas/ideas.md)

@@ -247,3 +247,7 @@ $ cat rewrite.data
 |修改后   | http://www.example.com/?name=alice |
 
 <br />
+
+## links
+上一章：[第二十二章 配置HTTPS服务](../../operation/configuration/https.md)  
+下一章：[第二十四章 配置redirect](../../operation/configuration/redirect.md)

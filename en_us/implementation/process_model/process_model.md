@@ -69,3 +69,7 @@ defer func() {
 ```
 
 When PANIC occurs, it affects only a single connection or request. At the same time, the context log during the PANIC recovery phase is also convenient to efficiently analyze and locate the root cause of the problem. For some problems that are difficult to reproduce offline, based on the log information of PANIC, the answer can often be found through code analysis.
+
+## links
+Previous: [Chap27 Layout of BFE Code Base](../../../en_us/implementation/source_layout/source_layout.md)  
+Next: [Chap29 Processing of Connections and Requests](../../../en_us/implementation/life_of_a_request/life_of_a_request.md)

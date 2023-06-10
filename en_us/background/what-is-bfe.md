@@ -134,3 +134,6 @@ At present, the BFE open source project is the forwarding engine in the BFE plat
   Rich and detailed monitoring indicators are built in BFE, which can fully grasp the system status with third-party monitoring systems (such as Zabbix and Prometheus)
 
 The above contents will be introduced in detail in the following chapters
+
+## links
+Next: [Chap2 Introduction to Network Front End](../../en_us/frontend_principle/introduction/introduction.md)

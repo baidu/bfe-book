@@ -105,3 +105,7 @@ After a certain type of request hits the traffic limit rule, you can configure t
 * FINISH: Close the connection after responding.
 
 * REQ_HEADER_SET: Forward normally, insert the specified key and value in the request header. Key and value are specified in params.
+
+## links
+Previous: [Chap24 Configure Redirect](../../../en_us/operation/config_redirect/config_redirect.md)  
+Next: [Chap26 Support More Protocols](../../../en_us/operation/config_protocols/config_protocols.md)

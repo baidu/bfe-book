@@ -156,3 +156,7 @@ BFE和后端实例间通信的超时包括：
 
 
 
+
+## links
+上一章：[第十四章 日志机制](../../design/log/log.md)  
+下一章：[第十六章 配置管理](../../design/configuration/configuration.md)

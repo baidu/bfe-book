@@ -239,3 +239,7 @@ For the full list of condition primitives supported by BFE, please see [BFE open
   - Warning: Inappropriate use can significantly affect performance
 - **contain**: string match
   - eg. req_cookie_value_contain()
+
+## links
+Previous: [Chap7 Forwarding Model of BFE](../../../en_us/design/model/model.md)  
+Next: [Chap9 Traffic Scheduling](../../../en_us/design/gslb/gslb.md)
