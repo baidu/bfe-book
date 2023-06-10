@@ -223,3 +223,7 @@ if hl != nil {
 
 - 写出连接缓存区数据并关闭连接
 
+
+## links
+上一章：[第二十八章 进程模型](../../implementation/process_model/process_model.md)  
+下一章：[第三十章 模块框架](../../implementation/model_framework/model_framework.md)

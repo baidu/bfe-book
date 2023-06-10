@@ -197,3 +197,7 @@ BFE provides an interface through which you can view various status of BFE servi
 
 ![](v100_monitor.png)
 
+
+## links
+Previous: [Chap18 Information Passthrough](../../../en_us/design/info_pass_through/pass_through.md)  
+Next: [Chap20 Basic Configuration of BFE Service](../../../en_us/operation/config_basic/basic.md)

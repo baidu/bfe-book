@@ -88,3 +88,7 @@ As a large Internet enterprise, Baidu has a complex scene of multiple regions an
 + BFE: layer-7 load balancing system. Provide application layer load balancing service.
 
   As a sub function of BFE, GSLB provides intranet traffic scheduling with cluster granularity across data centers.
+
+## links
+Previous: [Chap1 Introduction to BFE](../../../en_us/background/what-is-bfe.md)  
+Next: [Chap3 Trend of Network Front End Technology](../../../en_us/frontend_principle/trend/trend.md)

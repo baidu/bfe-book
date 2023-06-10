@@ -253,3 +253,7 @@ After the above configuration is modified, you can also reload the configuration
 The configuration of BFE can be roughly divided into two parts: normal configuration and dynamic configuration. For normal configurations, such as bfe.conf, the BFE process needs to be restarted before the new configuration can take effect.
 
 For dynamic configuration,  the re-loading of the configuration file can be triggered by accessing the monitoring port, which is 8421 by default. There is no need to restart the BFE process, which has no impact on the service. For details, please refer to [Configuration Management](../../design/configuration/configuration.md).
+
+## links
+Previous: [Chap19 Installation And Deployment of BFE Service](../../../en_us/operation/installation/installation.md)  
+Next: [Chap21 Configure Load Balancing Algorithm And Session Stickiness](../../../en_us/operation/config_scheduling/config_scheduling.md)

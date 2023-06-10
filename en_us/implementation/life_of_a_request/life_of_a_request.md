@@ -225,3 +225,7 @@ if hl != nil {
 
 - Write the "connection outgoing" buffer data and close the connection
 
+
+## links
+Previous: [Chap28 Process Model](../../../en_us/implementation/process_model/process_model.md)  
+Next: [Chap30 Module Framework](../../../en_us/implementation/module_framework/module_framework.md)

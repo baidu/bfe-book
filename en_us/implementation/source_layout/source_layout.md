@@ -49,3 +49,7 @@ The functional modules corresponding to each directory in top-down order are des
 - `bfe_debug`: debug related code
 - `bfe_util`: BFE basic library related code
 
+
+## links
+Previous: [Chap26 Support More Protocols](../../../en_us/operation/config_protocols/config_protocols.md)  
+Next: [Chap28 Process Model](../../../en_us/implementation/process_model/process_model.md)

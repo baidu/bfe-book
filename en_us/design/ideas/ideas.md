@@ -93,3 +93,7 @@ Refactoring the BFE forwarding engine based on Go is not just a change of progra
 The above contents will be described in detail in the following chapters.
 
 ![dict service refactor](./dict_service.png)
+
+## links
+Previous: [Chap4 Introduction to Network Load Balancing Technology](../../../en_us/frontend_principle/load_balance/load_balance.md)  
+Next: [Chap6 Comparison to Similar Systems](../../../en_us/design/comparison/comparison.md)

@@ -253,3 +253,7 @@ BFE支持多种安全等级（A+/A/B/C）。各安全等级差异在于支持的
 
 
 
+
+## links
+上一章：[第二十一章 配置负载均衡算法及会话保持](../../operation/configuration/proxy.md)  
+下一章：[第二十三章 配置rewrite](../../operation/configuration/rewrite.md)

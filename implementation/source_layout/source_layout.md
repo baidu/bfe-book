@@ -49,3 +49,7 @@ LICENSE			bfe_balance		bfe_module		bfe_tls			staticcheck.conf
 - `bfe_debug`: BFE模块调试开关相关代码
 - `bfe_util`: BFE基础库相关代码
 
+
+## links
+上一章：[第二十六章 支持更多协议](../../operation/configuration/protocol.md)  
+下一章：[第二十八章 进程模型](../../implementation/process_model/process_model.md)

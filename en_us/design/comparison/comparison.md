@@ -86,3 +86,7 @@ While Nginx and Envoy can do nothing with wrong memory usage. Debugging such a b
 
 NOTE: Nginx Plus supports hot-reload of configuration, with no process restart.
 
+
+## links
+Previous: [Chap5 Design Considerations of BFE](../../../en_us/design/ideas/ideas.md)  
+Next: [Chap7 Forwarding Model of BFE](../../../en_us/design/model/model.md)

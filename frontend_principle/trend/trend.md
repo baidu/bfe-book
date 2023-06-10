@@ -155,3 +155,7 @@
 云原生（Cloud Native）是目前云计算的重要方向。
 
 网络前端接入系统一方面要支持业务的云原生化，支持业务的微服务化、多租户、弹性扩缩容等能力；另外也要实现自身的云原生化，自身具备微服务化、弹性扩缩容的特性。
+
+## links
+上一章：[第二章 网络前端接入技术简介](../../frontend_principle/introduction/introduction.md)  
+下一章：[第四章 网络负载均衡技术简介](../../frontend_principle/load_balance/load_balance.md)

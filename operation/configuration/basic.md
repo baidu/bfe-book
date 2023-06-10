@@ -252,3 +252,7 @@ cluster_conf.data中的配置项较多，各个项的具体描述如下：
 BFE的配置可大致分为两部分：常规配置和动态配置。常规配置，比如bfe.conf，重新加载需要重启BFE进程，新配置才能生效。
 
 动态配置，可以通过访问监控端口，缺省为8421，来触发配置文件的重新读取，无需重启BFE进程，对服务无影响。具体可参考[配置管理](../../design/configuration/configuration.md)。
+
+## links
+上一章：[第十九章 BFE服务的安装部署](../../operation/installation/installation.md)  
+下一章：[第二十一章 配置负载均衡算法及会话保持](../../operation/configuration/proxy.md)

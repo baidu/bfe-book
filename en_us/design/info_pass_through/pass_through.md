@@ -138,3 +138,7 @@ In the above example, built-in variables are used when setting "X-Bfe-Log-Id" an
 | %client_cert_subject_organizational_unit | Subject Organizational Unit of client certificate            |
 | %client_cert_subject_province            | Subject Province of client certificate                       |
 | %client_cert_subject_country             | Subject Country of client certificate                        |
+
+## links
+Previous: [Chap17 HTTPS Optimization](../../../en_us/design/https/https.md)  
+Next: [Chap19 Installation And Deployment of BFE Service](../../../en_us/operation/installation/installation.md)

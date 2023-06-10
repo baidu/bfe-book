@@ -219,3 +219,7 @@ if hl != nil {
 ```
 
 
+
+## links
+上一章：[第二十九章 请求处理流程及响应](../../implementation/life_of_a_request/life_of_a_request.md)  
+下一章：[第三十一章 请求路由](../../implementation/routing/routing.md)

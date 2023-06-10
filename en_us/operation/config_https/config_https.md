@@ -257,3 +257,7 @@ BFE supports multiple security grades (A+/A/B/C). The difference of each securit
 
 
 
+
+## links
+Previous: [Chap21 Configure Load Balancing Algorithm And Session Stickiness](../../../en_us/operation/config_scheduling/config_scheduling.md)  
+Next: [Chap23 Configure Rewrite](../../../en_us/operation/config_rewrite/config_rewrite.md)

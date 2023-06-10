@@ -200,3 +200,7 @@ func (m *ModuleBlock) globalBlockHandler(session *bfe_basic.Session) int {
     ...
 }
 ```
+
+## links
+Previous: [Chap33 Implementation of Core Protocols](../../../en_us/implementation/protocol/protocol.md)  
+Next: [Appendix1 Multi-process GC mechanism of BFE](../../../en_us/appendix/multi_process_gc/multi_process_gc.md)

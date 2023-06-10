@@ -45,3 +45,7 @@ BFE uses log library in [https://github.com/baidu/go-lib](https://github.com/bai
 Access log of BFE is outputed by extension module mod_access. BFE's access logs include "Request" and "Session" logs. The session corresponds to the TCP connection established between the client and BFE. A session may contain multiple requests.
 
 mod_access provides template configuration capabilities, and users can customize the data fields output in the request log and session log.
+
+## links
+Previous: [Chap13 Status Monitoring](../../../en_us/design/monitor/monitor.md)  
+Next: [Chap15 Timeout Setting](../../../en_us/design/timeout/timeout.md)

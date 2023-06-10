@@ -194,3 +194,7 @@ func smoothBalance(backs BackendList) (*backend.BfeBackend, error) {
 | 5    | 4 -2  5        | c        | 9 -1 -1        |
 | 6    | 9 -1 -1        | a        | 7  0  0        |
 | 7    | 7  0  0        | a        | 5  1  1        |
+
+## links
+上一章：[第三十一章 请求路由](../../implementation/routing/routing.md)  
+下一章：[第三十三章 核心协议实现](../../implementation/protocol/protocol.md)

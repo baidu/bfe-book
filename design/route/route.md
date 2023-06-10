@@ -244,3 +244,7 @@ BFE开源项目所支持条件原语的列表，可以查看[BFE开源官网](ht
   - 注：这类条件原语不合理使用将明显影响性能，谨慎使用
 - **contain**: 字符串包含匹配
   - 如：req_cookie_value_contain()
+
+## links
+上一章：[第七章 BFE的转发模型](../../design/model/model.md)  
+下一章：[第九章 BFE的内网流量调度机制](../../design/gslb/gslb.md)

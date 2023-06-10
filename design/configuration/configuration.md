@@ -105,3 +105,6 @@ func (t *ProductRuleTable) Update(conf productRuleConf) {
 ```
 
 以上这两个接口，使用读写锁来保护。并且，在临界区中的操作都尽量简单，以降低对多个处理协程间并行度的影响。
+## links
+上一章：[第十五章 超时设置](../../design/timeout/timeout.md)  
+下一章：[第十七章 HTTPS优化机制](../../design/https/https.md)

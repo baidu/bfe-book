@@ -200,3 +200,7 @@ func (m *ModuleBlock) globalBlockHandler(session *bfe_basic.Session) int {
     ...
 }
 ```
+
+## links
+上一章：[第三十三章 核心协议实现](../../implementation/protocol/protocol.md)  
+下一章：[附1 BFE的多进程GC机制](../../appendix/multi_process_gc/multi_process_gc.md)

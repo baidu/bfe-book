@@ -67,3 +67,7 @@ In the directory **/bfe_modules/<module_name>** of BFE source code, there are a 
 |                        | mod_http_code      | mod_http_code reports statistics of HTTP response codes.     |
 
 You can access the address for monitor http://localhost:8421/monitor/module_handlers to view all callback points in the running BFE instance, the list of module callback functions registered at each callback point and the order.
+
+## links
+Previous: [Chap9 Traffic Scheduling](../../../en_us/design/gslb/gslb.md)  
+Next: [Chap11 Health Check](../../../en_us/design/health_check/health_check.md)

@@ -67,3 +67,7 @@ defer func() {
 
 在出现PANIC后，往往仅影响单个连接或请求。同时PANIC恢复阶段输出的上下文日志，也便于可高效分析定位出问题根因。对于一些难以在线下复现的问题，基于PANIC修复的经验，往往通过代码分析就能找到答案。
 
+
+## links
+上一章：[第二十七章 BFE的代码组织](../../implementation/source_layout/source_layout.md)  
+下一章：[第二十九章 请求处理流程及响应](../../implementation/life_of_a_request/life_of_a_request.md)

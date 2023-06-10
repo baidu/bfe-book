@@ -492,3 +492,7 @@ func (sc *serverConn) processHeaders(f *MetaHeadersFrame) error {
 }
 ```
 
+
+## links
+Previous: [Chap32 Load Balancing](../../../en_us/implementation/balancing/balancing.md)  
+Next: [Chap 34 How to Develop BFE Extension Module](../../../en_us/develop/how_to_write_module/how_to_write_module.md)

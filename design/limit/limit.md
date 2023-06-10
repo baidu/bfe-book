@@ -95,3 +95,6 @@
   基于计数器，限流可以精确到单个请求的粒度；内网流量调度的生效基于BFE处设置的权重，控制粒度较粗
 
   
+## links
+上一章：[第十一章 健康检查机制](../../design/health_check/health_check.md)  
+下一章：[第十三章 监控机制](../../design/monitor/monitor.md)

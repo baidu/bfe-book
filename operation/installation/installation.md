@@ -189,3 +189,7 @@ BFE提供了接口，可以通过该接口查看服务运行的各种状态数�
 ![](img/v100_monitor.png)
 
 
+
+## links
+上一章：[第十八章 信息的透传](../../design/info_pass_through/pass_through.md)  
+下一章：[第二十章 BFE服务的基础配置](../../operation/configuration/basic.md)

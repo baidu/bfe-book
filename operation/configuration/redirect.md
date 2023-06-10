@@ -124,3 +124,7 @@ redirect.data 包含重定向规则，可动态加载。安装包中的示例中
 |重定向到   | https://www.example.com/index.html |
 
 <br />
+
+## links
+上一章：[第二十三章 配置rewrite](../../operation/configuration/rewrite.md)  
+下一章：[第二十五章 配置限流](../../operation/configuration/prison.md)

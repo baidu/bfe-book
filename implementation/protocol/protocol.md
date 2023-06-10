@@ -488,3 +488,7 @@ func (sc *serverConn) processHeaders(f *MetaHeadersFrame) error {
 }
 ```
 
+
+## links
+上一章：[第三十二章 负载均衡](../../implementation/balancing/balancing.md)  
+下一章：[第三十四章 如何开发BFE扩展模块](../../develop/how_to_write_module/how_to_write_module.md)
